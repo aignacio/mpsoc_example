@@ -1,11 +1,11 @@
 CAPI=2:
-name: ::mpsoc_deca:v1.0.0
-description: Demo MPSoc for Deca Board
+name: ::example_deca:v1.0.0
+description: Demo Deca Board
 
 filesets:
   rtl:
     files:
-      - rtl/Briey.v : {file_type  : verilogSource}
+      - rtl/Murax.v : {file_type  : verilogSource}
       - rtl/top.sv  : {file_type  : systemVerilogSource}
 
   deca:
@@ -16,7 +16,7 @@ filesets:
 targets:
   default: &default
     filesets: [rtl]
-    toplevel: mpsoc_top
+    toplevel: top
 
   deca:
     default_tool : quartus
@@ -27,4 +27,4 @@ targets:
       quartus:
         family : Max 10
         device : 10M50DAF484C6GES
-    toplevel: mpsoc_top
+    toplevel: top
