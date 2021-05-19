@@ -1,0 +1,30 @@
+CAPI=2:
+name: ::mpsoc_deca:v1.0.0
+description: Demo MPSoc for Deca Board
+
+filesets:
+  rtl:
+    files:
+      - rtl/Briey.v : {file_type  : verilogSource}
+      - rtl/top.sv  : {file_type  : systemVerilogSource}
+
+  deca:
+    files:
+      - deca/deca.sdc   : {file_type  : SDC}
+      - deca/pinmap.tcl : {file_type  : tclSource}
+
+targets:
+  default: &default
+    filesets: [rtl]
+    toplevel: mpsoc_top
+
+  deca:
+    default_tool : quartus
+    description : DECA Development kit by Terasic
+    filesets : [rtl, deca]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Max 10
+        device : 10M50DAF484C6GES
+    toplevel: mpsoc_top
