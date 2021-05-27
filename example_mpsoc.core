@@ -1,0 +1,27 @@
+CAPI=2:
+name: example:mpsoc:1.0.0
+description: Demo MPSoC
+
+filesets:
+  rtl:
+    files:
+      - rtl/Murax.v : {file_type  : verilogSource}
+      - rtl/top.sv  : {file_type  : systemVerilogSource}
+
+  stlv7325:
+    files:
+      - xilinx/stlv7325.xdc : {file_type  : xdc}
+
+targets:
+  default: &default
+    filesets: [rtl]
+    toplevel: top
+
+  stl:
+    default_tool : vivado
+    description : STL7325
+    filesets : [rtl, stlv7325]
+    tools:
+      vivado:
+        part : xc7k325tffg676-2
+    toplevel: top
