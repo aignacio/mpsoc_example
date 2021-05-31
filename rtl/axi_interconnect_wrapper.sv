@@ -1,6 +1,8 @@
 module axi_interconnect_wrapper import ravenoc_pkg::*; #(
-  parameter N_MASTERS = 2,
-  parameter N_SLAVES = 2
+  parameter N_MASTERS   = 2,
+  parameter N_SLAVES    = 2,
+  parameter BASE_ADDR   = 0,
+  parameter ADDR_WIDTH  = 0
 )(
   input                                 clk,
   input                                 arst,
@@ -9,12 +11,45 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
   output  s_axi_miso_t  [N_MASTERS-1:0] masters_axi_miso,
   // Slave I/Fs
   output  s_axi_mosi_t  [N_SLAVES-1:0]  slaves_axi_mosi,
-  input   s_axi_miso_t  [N_SLAVES-1:0]  slaves_axi_miso,
-
+  input   s_axi_miso_t  [N_SLAVES-1:0]  slaves_axi_miso
 );
-
-
+  // Configuration:
+  // M_BASE_ADDR = Configures the base address of the AXI slaves
+  // M_ADDR_WIDTH = Configures the length of the addressing of the slaves based on multiples of 4KB
+  // for instance, if we consider 5x slave with MM below + 2x Masters:
+  //    _________________________
+  //  | 0x0000-0x0FFF | slave # 0 |
+  //  | 0x1000-0x2FFF | slave # 1 |
+  //  | 0x4000-0x4FFF | slave # 2 |
+  //  | 0x5000-0x5FFF | slave # 3 |
+  //  | 0x6000-0x6FFF | slave # 4 |
+  //    ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻
+  //  .S_COUNT(2),
+  //  .M_COUNT(5),
+  //  .ADDR_WIDTH(16),
+  //  .M_REGIONS(1),
+  //  .M_BASE_ADDR({16'h6000, 16'h5000, 16'h4000, 16'h1000, 6'h0000}),
+  //  .M_ADDR_WIDTH({32'd10, 32'd10, 32'd10, 32'd11, 32'd10})
+  //
+  // More info:
+  // https://github.com/alexforencich/verilog-axi/issues/16
   axi_interconnect #(
+    .S_COUNT      (N_MASTERS),
+    // Number of AXI outputs (master interfaces)
+    .M_COUNT      (N_SLAVES),
+    // Width of ID signal
+    .ID_WIDTH     (1),
+    // Number of regions per master interface
+    .M_REGIONS    (1),
+    // Width of address bus in bits
+    .ADDR_WIDTH   (16),
+    // Master interface base addresses
+    // M_COUNT concatenated fields of M_REGIONS concatenated fields of ADDR_WIDTH bits
+    // set to zero for default addressing based on M_ADDR_WIDTH
+    .M_BASE_ADDR  (BASE_ADDR),
+    // Master interface address widths
+    // M_COUNT concatenated fields of M_REGIONS concatenated fields of 32 bits
+    .M_ADDR_WIDTH (ADDR_WIDTH),
   ) u_axi_intcon (
     .clk          (clk),
     .rst          (arst),
