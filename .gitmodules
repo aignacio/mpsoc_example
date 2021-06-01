@@ -7,3 +7,6 @@
 [submodule "rtl/ravenoc"]
 	path = rtl/ravenoc
 	url = https://github.com/aignacio/ravenoc.git
+[submodule "tb/elfio"]
+	path = tb/elfio
+	url = https://github.com/serge1/ELFIO

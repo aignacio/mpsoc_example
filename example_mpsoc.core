@@ -5,11 +5,11 @@ description: Demo MPSoC
 filesets:
   misc:
     files:
-      - rtl/axi_interconnect_wrapper.sv
-      - rtl/axi_mem_wrapper.sv
-      - rtl/data_axi_if.sv
-      - rtl/inst_axi_if.sv
-      - rtl/simple_tile.sv
+      - rtl/misc/axi_interconnect_wrapper.sv
+      - rtl/misc/axi_mem_wrapper.sv
+      - rtl/misc/data_axi_if.sv
+      - rtl/misc/inst_axi_if.sv
+      - rtl/misc/simple_tile.sv
     file_type: systemVerilogSource
 
   ravenoc:
