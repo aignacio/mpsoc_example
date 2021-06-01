@@ -1,4 +1,4 @@
-module simple_tile(
+module simple_tile import ravenoc_pkg::*; (
   input clk_core,
   input arst_core
 );
@@ -114,7 +114,7 @@ module simple_tile(
     .m_axi_miso (masters_axi_miso[0])
   );
 
-  data_axi_if (
+  data_axi_if u_data_rv_axi (
     .clk        (clk_core),
     .arst       (arst_core),
     // From RV core
@@ -134,7 +134,7 @@ module simple_tile(
   axi_interconnect_wrapper #(
     .N_MASTERS (2),
     .N_SLAVES  (3),
-    .BASE_ADDR ({16'h6000, 16'h4000, 6'h2000}),
+    .BASE_ADDR ({16'h6000, 16'h4000, 16'h2000}),
     .ADDR_WIDTH({32'd12, 32'd13, 32'd13})
   ) u_axi_intcon (
     .clk  (clk_core),

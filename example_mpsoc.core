@@ -3,10 +3,118 @@ name: example:mpsoc:1.0.0
 description: Demo MPSoC
 
 filesets:
-  rtl:
+  misc:
     files:
-      - rtl/Murax.v : {file_type  : verilogSource}
-      - rtl/top.sv  : {file_type  : systemVerilogSource}
+      - rtl/axi_interconnect_wrapper.sv
+      - rtl/axi_mem_wrapper.sv
+      - rtl/data_axi_if.sv
+      - rtl/inst_axi_if.sv
+      - rtl/simple_tile.sv
+    file_type: systemVerilogSource
+
+  ravenoc:
+    files:
+      - rtl/ravenoc/src/include/ravenoc_axi_fnc.svh: {is_include_file: true}
+      - rtl/ravenoc/src/include/ravenoc_defines.svh: {is_include_file: true}
+      - rtl/ravenoc/src/include/ravenoc_structs.svh: {is_include_file: true}
+      - rtl/ravenoc/src/include/ravenoc_axi_structs.svh: {is_include_file: true}
+      - rtl/ravenoc/src/include/ravenoc_pkg.sv
+      - rtl/ravenoc/src/ni/axi_csr.sv
+      - rtl/ravenoc/src/ni/axi_slave_if.sv
+      - rtl/ravenoc/src/ni/router_wrapper.sv
+      - rtl/ravenoc/src/ni/async_gp_fifo.sv
+      - rtl/ravenoc/src/ni/cdc_pkt.sv
+      - rtl/ravenoc/src/ni/pkt_proc.sv
+      - rtl/ravenoc/src/ravenoc.sv
+      - rtl/ravenoc/src/router/fifo.sv
+      - rtl/ravenoc/src/router/output_module.sv
+      - rtl/ravenoc/src/router/router_if.sv
+      - rtl/ravenoc/src/router/router_ravenoc.sv
+      - rtl/ravenoc/src/router/rr_arbiter.sv
+      - rtl/ravenoc/src/router/high_prior_arbiter.sv
+      - rtl/ravenoc/src/router/vc_buffer.sv
+      - rtl/ravenoc/src/router/input_router.sv
+      - rtl/ravenoc/src/router/input_module.sv
+      - rtl/ravenoc/src/router/input_datapath.sv
+    file_type: systemVerilogSource
+
+  axi_comps:
+    files:
+      - rtl/verilog-axi/rtl/axi_dma_rd.v
+      - rtl/verilog-axi/rtl/axi_dma_wr.v
+      - rtl/verilog-axi/rtl/axi_ram_wr_if.v
+      - rtl/verilog-axi/rtl/axi_axil_adapter.v
+      - rtl/verilog-axi/rtl/axi_adapter_rd.v
+      - rtl/verilog-axi/rtl/axi_dma.v
+      - rtl/verilog-axi/rtl/axi_register_wr.v
+      - rtl/verilog-axi/rtl/priority_encoder.v
+      - rtl/verilog-axi/rtl/axi_dp_ram.v
+      - rtl/verilog-axi/rtl/axi_adapter_wr.v
+      - rtl/verilog-axi/rtl/axi_ram.v
+      - rtl/verilog-axi/rtl/axi_register_rd.v
+      - rtl/verilog-axi/rtl/axil_register_wr.v
+      - rtl/verilog-axi/rtl/axil_interconnect.v
+      - rtl/verilog-axi/rtl/axi_crossbar_rd.v
+      - rtl/verilog-axi/rtl/axil_adapter_rd.v
+      - rtl/verilog-axi/rtl/axi_crossbar_wr.v
+      - rtl/verilog-axi/rtl/axil_register_rd.v
+      - rtl/verilog-axi/rtl/axi_crossbar.v
+      - rtl/verilog-axi/rtl/axi_cdma.v
+      - rtl/verilog-axi/rtl/axil_adapter_wr.v
+      - rtl/verilog-axi/rtl/axi_cdma_desc_mux.v
+      - rtl/verilog-axi/rtl/axil_dp_ram.v
+      - rtl/verilog-axi/rtl/axi_fifo.v
+      - rtl/verilog-axi/rtl/axil_register.v
+      - rtl/verilog-axi/rtl/axi_adapter.v
+      - rtl/verilog-axi/rtl/axil_adapter.v
+      - rtl/verilog-axi/rtl/axi_fifo_wr.v
+      - rtl/verilog-axi/rtl/axi_ram_rd_if.v
+      - rtl/verilog-axi/rtl/axi_fifo_rd.v
+      - rtl/verilog-axi/rtl/axi_crossbar_addr.v
+      - rtl/verilog-axi/rtl/axi_ram_wr_rd_if.v
+      - rtl/verilog-axi/rtl/arbiter.v
+      - rtl/verilog-axi/rtl/axil_cdc_wr.v
+      - rtl/verilog-axi/rtl/axil_ram.v
+      - rtl/verilog-axi/rtl/axil_cdc.v
+      - rtl/verilog-axi/rtl/axil_cdc_rd.v
+      - rtl/verilog-axi/rtl/axi_axil_adapter_rd.v
+      - rtl/verilog-axi/rtl/axi_interconnect.v
+      - rtl/verilog-axi/rtl/axi_register.v
+      - rtl/verilog-axi/rtl/axi_dma_desc_mux.v
+      - rtl/verilog-axi/rtl/axi_axil_adapter_wr.v
+    file_type: verilogSource
+
+  cv32e40p:
+    files:
+      - rtl/cv32e40p/rtl/include/cv32e40p_pkg.sv: {is_include_file: true}
+      - rtl/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv: {is_include_file: true}
+      - rtl/cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv: {is_include_file: true}
+      - rtl/cv32e40p/rtl/cv32e40p_core.sv
+      - rtl/cv32e40p/rtl/cv32e40p_obi_interface.sv
+      - rtl/cv32e40p/rtl/cv32e40p_alu.sv
+      - rtl/cv32e40p/rtl/cv32e40p_decoder.sv
+      - rtl/cv32e40p/rtl/cv32e40p_compressed_decoder.sv
+      - rtl/cv32e40p/rtl/cv32e40p_apu_disp.sv
+      - rtl/cv32e40p/rtl/cv32e40p_if_stage.sv
+      - rtl/cv32e40p/rtl/cv32e40p_aligner.sv
+      - rtl/cv32e40p/rtl/cv32e40p_ex_stage.sv
+      - rtl/cv32e40p/rtl/cv32e40p_controller.sv
+      - rtl/cv32e40p/rtl/cv32e40p_cs_registers.sv
+      - rtl/cv32e40p/rtl/cv32e40p_prefetch_controller.sv
+      - rtl/cv32e40p/rtl/cv32e40p_register_file_ff.sv
+      - rtl/cv32e40p/rtl/cv32e40p_mult.sv
+      - rtl/cv32e40p/rtl/cv32e40p_fifo.sv
+      - rtl/cv32e40p/rtl/cv32e40p_hwloop_regs.sv
+      - rtl/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv
+      - rtl/cv32e40p/rtl/cv32e40p_ff_one.sv
+      - rtl/cv32e40p/rtl/cv32e40p_id_stage.sv
+      - rtl/cv32e40p/rtl/cv32e40p_sleep_unit.sv
+      - rtl/cv32e40p/rtl/cv32e40p_load_store_unit.sv
+      - rtl/cv32e40p/rtl/cv32e40p_alu_div.sv
+      - rtl/cv32e40p/rtl/cv32e40p_register_file_latch.sv
+      - rtl/cv32e40p/rtl/cv32e40p_popcnt.sv
+      - rtl/cv32e40p/rtl/cv32e40p_int_controller.sv
+    file_type: systemVerilogSource
 
   stlv7325:
     files:
@@ -14,13 +122,25 @@ filesets:
 
 targets:
   default: &default
-    filesets: [rtl]
-    toplevel: top
+    filesets: [ravenoc,cv32e40p,misc,axi_comps]
+    toplevel: simple_tile
+
+  lint:
+    default_tool : verilator
+    <<: *default
+    tools:
+      verilator:
+        mode : lint-only
+        verilator_options:
+          - "-Wall"
+    toplevel : simple_tile
 
   stl:
+    <<: *default
     default_tool : vivado
     description : STL7325
-    filesets : [rtl, stlv7325]
+    filesets_append:
+      - stlv7325
     tools:
       vivado:
         part : xc7k325tffg676-2

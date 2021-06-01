@@ -26,7 +26,7 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
   // .M_COUNT(3),
   // .ADDR_WIDTH(16),
   // .M_REGIONS(1),
-  // .M_BASE_ADDR({16'h6000, 16'h4000, 6'h2000}),
+  // .M_BASE_ADDR({16'h6000, 16'h4000, 16'h2000}),
   // .M_ADDR_WIDTH({32'd12, 32'd13, 32'd13})
   //
   // More info:
