@@ -17,19 +17,17 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
   // M_BASE_ADDR = Configures the base address of the AXI slaves
   // M_ADDR_WIDTH = Configures the length of the addressing of the slaves based on multiples of 4KB
   // for instance, if we consider 5x slave with MM below + 2x Masters:
-  //    _________________________
-  //  | 0x0000-0x0FFF | slave # 0 |
-  //  | 0x1000-0x2FFF | slave # 1 |
-  //  | 0x4000-0x4FFF | slave # 2 |
-  //  | 0x5000-0x5FFF | slave # 3 |
-  //  | 0x6000-0x6FFF | slave # 4 |
-  //    ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻
-  //  .S_COUNT(2),
-  //  .M_COUNT(5),
-  //  .ADDR_WIDTH(16),
-  //  .M_REGIONS(1),
-  //  .M_BASE_ADDR({16'h6000, 16'h5000, 16'h4000, 16'h1000, 6'h0000}),
-  //  .M_ADDR_WIDTH({32'd10, 32'd10, 32'd10, 32'd11, 32'd10})
+  //    _______________________________
+  //  | 0x2000-0x3FFF | slave # 0 - 8KB |
+  //  | 0x4000-0x5FFF | slave # 1 - 8KB |
+  //  | 0x6000-0x6FFF | slave # 2 - 4KB |
+  //    ⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻⎻
+  // .S_COUNT(2),
+  // .M_COUNT(3),
+  // .ADDR_WIDTH(16),
+  // .M_REGIONS(1),
+  // .M_BASE_ADDR({16'h6000, 16'h4000, 6'h2000}),
+  // .M_ADDR_WIDTH({32'd12, 32'd13, 32'd13})
   //
   // More info:
   // https://github.com/alexforencich/verilog-axi/issues/16
