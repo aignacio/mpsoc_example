@@ -58,10 +58,10 @@ template<class module> class testbench {
     virtual void tick(void) {
       if (getDataNextCycle) {
         getDataNextCycle = false;
-        //printf("%c",core->riscv_soc->getbufferReq());
+        //printf("%c",core->simple_tile->getbufferReq());
       }
 
-      //if (core->riscv_soc->printfbufferReq())
+      //if (core->simple_tile->printfbufferReq())
         //getDataNextCycle = true;
 
       core->clk_core = 0;
@@ -80,7 +80,8 @@ template<class module> class testbench {
     }
 };
 
-bool loadELF(testbench<Vriscv_soc> *cpu, const char *program_path, const bool en_print){
+/*
+bool loadELF(testbench<Vsimple_tile> *cpu, const char *program_path, const bool en_print){
     ELFIO::elfio program;
 
     program.load(program_path);
@@ -139,7 +140,7 @@ bool loadELF(testbench<Vriscv_soc> *cpu, const char *program_path, const bool en
             for (uint32_t p = 0; p < mem_size; p+=4){
                 uint32_t word_line = ((uint8_t)p_seg->get_data()[p+3]<<24)+((uint8_t)p_seg->get_data()[p+2]<<16)+((uint8_t)p_seg->get_data()[p+1]<<8)+(uint8_t)p_seg->get_data()[p];
                 // if (en_print) printf("\nIRAM = %8x - %8x", p, word_line);
-                cpu->core->riscv_soc->writeWordIRAM(p/4,word_line);
+                cpu->core->simple_tile->writeWordIRAM(p/4,word_line);
             }
         }
         else {
@@ -154,7 +155,7 @@ bool loadELF(testbench<Vriscv_soc> *cpu, const char *program_path, const bool en
                     word_line = ((uint8_t)p_seg->get_data()[p+3]<<24)+((uint8_t)p_seg->get_data()[p+2]<<16)+((uint8_t)p_seg->get_data()[p+1]<<8)+(uint8_t)p_seg->get_data()[p];
                 }
                 // if (en_print) printf("\nDRAM = %8x - %8x", p, word_line);
-                cpu->core->riscv_soc->writeWordDRAM(p/4,word_line);
+                cpu->core->simple_tile->writeWordDRAM(p/4,word_line);
             }
         }
     }
@@ -163,12 +164,12 @@ bool loadELF(testbench<Vriscv_soc> *cpu, const char *program_path, const bool en
 
     if(en_print) printf("\nEntry point: %8x", (uint32_t) entry_point);
 
-    cpu->core->riscv_soc->writeRstAddr((uint32_t) entry_point);
+    cpu->core->simple_tile->writeRstAddr((uint32_t) entry_point);
     cpu->loaded = true;
     cout << endl << endl;
     return true;
 }
-
+*/
 int main(int argc, char** argv, char** env){
     Verilated::commandArgs(argc, argv);
 
@@ -177,10 +178,11 @@ int main(int argc, char** argv, char** env){
 
     cout << "\n[RISCV SoC] Emulator started";
 
+    test++;
     dut->core->arst_core = 1;
     dut->reset_n(1);
 
-    while(true) {
+    while(test--) {
 		  dut->tick();
     }
     dut->close();

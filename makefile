@@ -3,21 +3,21 @@ RTL_FOLDERS	= cv32e40p		\
 							verilog-axi	\
 							misc
 
-SRC_VERILOG ?=	$(shell find rtl/cv32e40p/rtl/include	-type f -name *.sv)
-SRC_VERILOG +=	$(shell find rtl/cv32e40p/rtl					-type f -name *.sv)
-#SRC_VERILOG +=	$(shell find rtl/ravenoc/src/include	-type f -name *.svh)
-SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_defines.svh
+#SRC_VERILOG ?=	$(shell find rtl/cv32e40p/rtl/include	-type f -name *.sv)
+#SRC_VERILOG +=	$(shell find rtl/cv32e40p/bhv/include	-type f -name *.sv)
+#SRC_VERILOG +=	$(shell find rtl/cv32e40p/rtl					-type f -name *.sv)
+SRC_VERILOG ?=	rtl/ravenoc/src/include/ravenoc_defines.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_structs.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_structs.svh
-SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_pkg.sv
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_fnc.svh
-SRC_VERILOG +=	$(shell find rtl/ravenoc/src					-type f -name *.sv)
-SRC_VERILOG +=	$(shell find rtl/verilog-axi/rtl			-type f -name *.v)
-SRC_VERILOG	+=	$(shell find rtl/misc									-type f -name *.sv)
+SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_pkg.sv
+SRC_VERILOG +=	$(shell find rtl/ravenoc/src					-type f -iname *.sv)
+SRC_VERILOG +=	$(shell find rtl/verilog-axi/rtl			-type f -iname *.v)
+SRC_VERILOG	+=	$(shell find rtl/misc									-type f -iname *.sv)
+SRC_VERILOG	+=	$(shell find rtl/misc									-type f -iname *.v)
 
-INC_VLOG		:=	rtl/cv32e40p/rtl/include	\
-								rtl/ravenoc/src/include
-INCS_VLOG		:=	$(addprefix +incdir+,$(INC_VLOG))
+INC_VLOG		:=	rtl/ravenoc/src/include
+INCS_VLOG		:=	$(addprefix -I,$(INC_VLOG))
 
 ##### Verilator configuration stuff
 VERILATOR_TB	:=	tb
@@ -50,12 +50,13 @@ VERIL_FLAGS		:=	-O1 										\
 									--trace-depth			10000	\
 									--trace-max-array	10000	\
 									--trace-max-width 10000	\
-									--cc										\
-									--debug
+									--cc
+									#--debug
 CPPFLAGS_VERI	:=	"$(INCS_CPP) -O3 -g3 -Wall 						\
-									-Werror -Wno-aligned-new 							\
+									-Werror																\
 									-DIRAM_KB_SIZE=\"$(IRAM_KB_SIZE)\"		\
-									-DDRAM_KB_SIZE=\"$(DRAM_KB_SIZE)\""
+									-DDRAM_KB_SIZE=\"$(DRAM_KB_SIZE)\"		\
+									-Wunknown-warning-option"
 # WARN: rtls order matters in verilator compilation seq.
 VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
 									--top-module $(ROOT_MOD_VERI) \
