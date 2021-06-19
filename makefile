@@ -6,7 +6,10 @@ RTL_FOLDERS	= cv32e40p		\
 #SRC_VERILOG ?=	$(shell find rtl/cv32e40p/rtl/include	-type f -name *.sv)
 #SRC_VERILOG +=	$(shell find rtl/cv32e40p/bhv/include	-type f -name *.sv)
 #SRC_VERILOG +=	$(shell find rtl/cv32e40p/rtl					-type f -name *.sv)
-SRC_VERILOG ?=	rtl/ravenoc/src/include/ravenoc_defines.svh
+# Adding custom NoC cfg
+SRC_VERILOG ?=	rtl/misc/ravenoc_defines.svh
+# We need to manually add this seq. of files due to verilator order enforcement for
+# compiling all together
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_structs.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_structs.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_fnc.svh
@@ -25,12 +28,14 @@ TB_VERILATOR	:=	$(VERILATOR_TB)/testbench.cpp
 IRAM_KB_SIZE	?=	8
 DRAM_KB_SIZE	?=	8
 OUT_VERILATOR	:=	output_verilator
-ROOT_MOD_VERI	:=	simple_tile
+ROOT_MOD_VERI	:=	mpsoc
 VERILATOR_EXE	:=	$(OUT_VERILATOR)/$(ROOT_MOD_VERI)
+WAVEFORM_FST	?=	/tmp/waves.fst
+EN_FST				?=	1
 SRC_CPP				:=	$(wildcard $(VERILATOR_TB)/*.cpp)
 INC_CPP				:=	../tb/elfio
 INCS_CPP			:=	$(addprefix -I,$(INC_CPP))
-VERIL_FLAGS		:=	-O1 										\
+VERIL_FLAGS		:=	-O3 										\
 									-Wno-CASEINCOMPLETE 		\
 									-Wno-WIDTH							\
 									-Wno-COMBDLY						\
@@ -44,10 +49,14 @@ VERIL_FLAGS		:=	-O1 										\
 									-Wno-BLKANDNBLK					\
 									-Wno-CMPCONST						\
 									-Wno-MODDUP							\
+									-Wno-UNOPTTHREADS				\
+									--coverage							\
 									--exe										\
 									--threads 4							\
 									--trace 								\
 									--trace-depth			10000	\
+									--trace-structs					\
+									--trace-fst							\
 									--trace-max-array	10000	\
 									--trace-max-width 10000	\
 									--cc
@@ -56,6 +65,8 @@ CPPFLAGS_VERI	:=	"$(INCS_CPP) -O3 -g3 -Wall 						\
 									-Werror																\
 									-DIRAM_KB_SIZE=\"$(IRAM_KB_SIZE)\"		\
 									-DDRAM_KB_SIZE=\"$(DRAM_KB_SIZE)\"		\
+									-DWAVEFORM_FST=\"$(WAVEFORM_FST)\" 		\
+									-DEN_FST=\"$(EN_FST)\"								\
 									-Wunknown-warning-option"
 # WARN: rtls order matters in verilator compilation seq.
 VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
@@ -69,7 +80,19 @@ VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
 									-o 														\
 									$(ROOT_MOD_VERI)
 
-.PHONY: fpga program_fpga add_lib verilator clean
+.PHONY: fpga program_fpga add_lib verilator clean help
+help:
+	@echo "Rules list:"
+	@echo "all					- build MPSoC"
+	@echo "wave					- waveform vcd open"
+	@echo "fpga					- generate fpga bitstream through fusesoc"
+	@echo "program_fpga - run fusesoc only to pgm the board"
+
+wave: $(WAVEFORM_FST)
+	/Applications/gtkwave.app/Contents/Resources/bin/gtkwave $(WAVEFORM_FST) tmpl.gtkw
+
+clean:
+	rm -rf $(OUT_VERILATOR)
 
 all: $(VERILATOR_EXE)
 	$(VERILATOR_EXE)
@@ -81,7 +104,7 @@ verilator: $(VERILATOR_EXE)
 	@echo "\n"
 
 $(VERILATOR_EXE): $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk
-	+@make -C $(OUT_VERILATOR) -f V$(ROOT_MOD_VERI).mk
+	+@make -C $(OUT_VERILATOR) -f V$(ROOT_MOD_VERI).mk VM_PARALLEL_BUILDS=1
 
 $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk: $(SRC_VERILOG) $(SRC_CPP) $(TB_VERILATOR)
 	verilator $(VERIL_ARGS)
@@ -95,3 +118,5 @@ program_fpga:
 add_lib:
 	fusesoc library add example:mpsoc:1.0.0 .
 
+ctags:
+	ctags --extras=+q --fields=+i -n -R --exclude=.git --exclude=build --exclude=output_verilator

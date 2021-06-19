@@ -101,7 +101,7 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
 
   localparam ID_WIDTH     = 1;
   localparam DATA_WIDTH   = 32;
-  localparam ADDR_WIDTH   = 16;
+  localparam ADDR_WIDTH   = 32;
   localparam AWUSER_WIDTH = 1;
   localparam ARUSER_WIDTH = 1;
   localparam WUSER_WIDTH  = 1;
@@ -230,7 +230,7 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
     // Number of regions per master interface
     .M_REGIONS    (1),
     // Width of address bus in bits
-    .ADDR_WIDTH   (16),
+    .ADDR_WIDTH   (32),
     // Master interface base addresses
     // M_COUNT concatenated fields of M_REGIONS concatenated fields of ADDR_WIDTH bits
     // set to zero for default addressing based on M_ADDR_WIDTH
