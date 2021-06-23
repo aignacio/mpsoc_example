@@ -46,6 +46,7 @@ static int zeroed_variable_in_bss;
 static int initialized_variable_in_data = 42;
 static int toggle = 0;
 
+extern void irq_callback(void);
 extern void main(void);
 
 void _reset(void) {

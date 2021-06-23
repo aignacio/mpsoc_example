@@ -4,25 +4,10 @@
 #include <string.h>
 
 #include "tile_slave_utils.h"
+#include "ravenoc_utils.h"
 #include "encoding.h"
 
-#define _asmPktNoC(x)   (x.x_dest<<31 | x.y_dest<<30 | x.pkt_width<<22 | x.message)
-
-volatile uint32_t* const RaveNoC_wr_buffer  = (uint32_t *)RAVENOC_WR_BUFFER;
-volatile uint32_t* const RaveNoC_rd_buffer  = (uint32_t *)RAVENOC_RD_BUFFER;
-volatile uint32_t* const RaveNoC_Version    = (uint32_t *)RAVENOC_CSR_VERS;
-volatile uint32_t* const RaveNoC_Row        = (uint32_t *)RAVENOC_CSR_ROW;
-volatile uint32_t* const RaveNoC_Col        = (uint32_t *)RAVENOC_CSR_COL;
-
-uint8_t tile_row = *RaveNoC_Row;
-uint8_t tile_col = *RaveNoC_Col;
-
-typedef struct noc_pkt {
-  unsigned int x_dest  : 1;
-  unsigned int y_dest  : 1;
-  unsigned int pkt_width : 8;
-  unsigned int message : 22;
-} noc_pkt;
+tile_coord tile_xy;
 
 void setup_irqs(){
   uint32_t mstatus_csr = read_csr(mstatus);
@@ -31,20 +16,29 @@ void setup_irqs(){
 }
 
 int main(void) {
+  uint8_t tile_row = *RaveNoC_Row;
+  uint8_t tile_col = *RaveNoC_Col;
+
+  tile_xy.x = tile_row;
+  tile_xy.y = tile_col;
+
   setup_irqs();
 
   while(1);
 }
 
 void irq_callback() {
-  noc_pkt temp;
-  temp.x_dest = 0;
-  temp.y_dest = 0;
-  temp.pkt_width = 0;
-  temp.message = *RaveNoC_rd_buffer;
-  temp.message = temp.message+1;
-  //if (finished == false){
-  *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp);
-  //}
-  //finished = true;
+  uint32_t temp_rd = *RaveNoC_rd_buffer;
+  noc_pkt reply_pkt;
+
+  temp_rd &= 0xFFFFF; // We remove header flit info
+
+  // Let's implement custom simple protocol
+  reply_pkt.x_dest    = 0;
+  reply_pkt.y_dest    = 0;
+  reply_pkt.pkt_width = 0;
+  reply_pkt.message   = (uint32_t)_slaveFmtProc(tile_xy,temp_rd);
+
+  // Send it back to the master
+  *RaveNoC_wr_buffer = (uint32_t)_asmPktNoC(reply_pkt);
 }
