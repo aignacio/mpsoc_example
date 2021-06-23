@@ -5,17 +5,22 @@ description: Demo MPSoC
 filesets:
   misc:
     files:
+      - rtl/misc/ravenoc_defines.svh: {is_include_file: true}
+      - rtl/misc/core/VexRiscvAxi4wJtag.v
+      - rtl/misc/core/VexRiscvAxi4.v
+      - rtl/misc/tile_slave.sv
+      - rtl/misc/core/vexriscv_wrapper.sv
+      - rtl/misc/core/vexriscv_w_jtag_wrapper.sv
+      - rtl/misc/tile_master.sv
+      - rtl/misc/axi_rom_wrapper.sv
       - rtl/misc/axi_interconnect_wrapper.sv
+      - rtl/misc/mpsoc.sv
       - rtl/misc/axi_mem_wrapper.sv
-      - rtl/misc/data_axi_if.sv
-      - rtl/misc/inst_axi_if.sv
-      - rtl/misc/simple_tile.sv
     file_type: systemVerilogSource
 
   ravenoc:
     files:
       - rtl/ravenoc/src/include/ravenoc_axi_fnc.svh: {is_include_file: true}
-      - rtl/ravenoc/src/include/ravenoc_defines.svh: {is_include_file: true}
       - rtl/ravenoc/src/include/ravenoc_structs.svh: {is_include_file: true}
       - rtl/ravenoc/src/include/ravenoc_axi_structs.svh: {is_include_file: true}
       - rtl/ravenoc/src/include/ravenoc_pkg.sv

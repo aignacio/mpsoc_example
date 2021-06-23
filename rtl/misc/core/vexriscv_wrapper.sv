@@ -6,7 +6,9 @@ module vexriscv_wrapper import ravenoc_pkg::*; (
   output  s_axi_mosi_t  ibus_axi_mosi,
   // D-bus
   input   s_axi_miso_t  dbus_axi_miso,
-  output  s_axi_mosi_t  dbus_axi_mosi
+  output  s_axi_mosi_t  dbus_axi_mosi,
+  // External IRQ
+  input                 irq_i
 );
   always_comb begin
     ibus_axi_mosi.arid      = '0;
@@ -32,9 +34,9 @@ module vexriscv_wrapper import ravenoc_pkg::*; (
     dbus_axi_mosi.arqos     = '0;
   end
 
-  VexRiscvAxi4Simple u_vexrv_core(
+  VexRiscvAxi4 u_vexrv_core(
     .timerInterrupt            ('0),
-    .externalInterrupt         ('0),
+    .externalInterrupt         (irq_i),
     .softwareInterrupt         ('0),
     .iBusAxi_ar_valid          (ibus_axi_mosi.arvalid),
     .iBusAxi_ar_ready          (ibus_axi_miso.arready),

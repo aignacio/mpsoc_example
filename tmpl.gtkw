@@ -1,52 +1,298 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Sat Jun 19 11:13:39 2021
+[*] Wed Jun 23 13:55:25 2021
 [*]
 [dumpfile] "/private/tmp/waves.fst"
-[dumpfile_mtime] "Sat Jun 19 11:12:48 2021"
-[dumpfile_size] 113101
+[dumpfile_mtime] "Wed Jun 23 13:51:29 2021"
+[dumpfile_size] 1274991
 [savefile] "/Users/aignacio/projects/mpsoc_example/tmpl.gtkw"
-[timestart] 6270
-[size] 1680 833
-[pos] 0 332
-*-11.111345 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 9100
+[size] 2347 726
+[pos] 121 1331
+*-14.307153 158200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.mpsoc.
-[treeopen] TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.
-[treeopen] TOP.mpsoc.u_noc.
-[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].
-[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].
-[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.
+[treeopen] TOP.mpsoc.gen_tiles[3].u_tile.u_riscv_core.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.
-[sst_width] 289
-[signals_width] 133
+[treeopen] TOP.mpsoc.u_tile_master.
+[treeopen] TOP.mpsoc.u_tile_master.u_ram_data_rv.
+[treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.
+[treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.
+[sst_width] 222
+[signals_width] 374
 [sst_expanded] 1
-[sst_vpaned_height] 408
+[sst_vpaned_height] 346
 @28
 TOP.mpsoc.arst
 TOP.mpsoc.clk
+@29
++{irq_tile_3,3} TOP.mpsoc.irqs_noc(15).irq_trig
 @800200
--tile_0
-@22
-TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.ibus_axi_mosi.araddr[31:0]
+-tile_master
 @28
-TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.ibus_axi_mosi.arvalid
-TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.ibus_axi_miso.arready
++{irq_master_0,0} TOP.mpsoc.u_tile_master.u_riscv_core.irq_i
+@800200
+-i_bus
 @22
-TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.ibus_axi_miso.rdata[31:0]
+TOP.mpsoc.u_tile_master.u_riscv_core.ibus_axi_mosi.araddr[31:0]
 @28
-TOP.mpsoc.gen_tiles[0].u_tile.u_riscv_core.ibus_axi_miso.rvalid
+TOP.mpsoc.u_tile_master.u_riscv_core.ibus_axi_mosi.arvalid
+@22
+TOP.mpsoc.u_tile_master.u_riscv_core.ibus_axi_miso.rdata[31:0]
+@28
+TOP.mpsoc.u_tile_master.u_riscv_core.ibus_axi_miso.rvalid
 @1000200
--tile_0
-@22
-TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.araddr[31:0]
+-i_bus
+@800200
+-d_bus
+@c00024
+[color] 2
+#{x_source} (12)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (13)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
 @28
-TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.arvalid
-@100000028
-TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.arsize[2:0]
+(12)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(13)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@1401200
+-group_end
+@c00024
+[color] 2
+#{y_source} (14)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (15)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@28
+(14)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(15)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@1401200
+-group_end
+@c00024
+[color] 2
+#{message} (16)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (17)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (18)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (19)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (20)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (21)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (22)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (23)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (24)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (25)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (26)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (27)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (28)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (29)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (30)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (31)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@28
+(16)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(17)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(18)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(19)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(20)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(21)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(22)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(23)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(24)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(25)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(26)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(27)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(28)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(29)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(30)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(31)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@1401200
+-group_end
 @22
-TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.arlen[7:0]
-@23
-TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_miso_if_o.rdata[31:0]
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.araddr[31:0]
+@28
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.arvalid
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rvalid
+@c00022
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@28
+(0)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(1)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(2)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(3)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(4)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(5)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(6)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(7)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(8)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(9)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(10)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+(11)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
+@1401200
+-group_end
+@22
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.awaddr[31:0]
+@28
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.awvalid
+@22
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.wdata[31:0]
+@28
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.wvalid
+@1000200
+-d_bus
+-tile_master
+@c00200
+-memory
+@22
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(0)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(1)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(2)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(3)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(4)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(5)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(6)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(7)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(8)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(9)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(10)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(11)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(12)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(13)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(14)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(15)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(16)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(17)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(18)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(19)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(20)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(21)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(22)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(23)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(24)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(25)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(26)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(27)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(28)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(29)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(30)[31:0]
+@c00022
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+@28
+(0)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(1)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(2)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(3)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(4)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(5)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(6)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(7)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(8)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(9)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(10)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(11)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(12)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(13)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(14)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(15)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(16)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(17)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(18)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(19)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(20)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(21)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(22)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(23)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(24)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(25)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(26)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(27)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(28)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(29)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(30)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+(31)TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(31)[31:0]
+@1401200
+-group_end
+@22
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(32)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(33)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(34)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(35)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(36)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(37)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(38)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(39)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(40)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(41)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(42)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(43)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(44)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(45)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(46)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(47)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(48)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(49)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(50)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(51)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(52)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(53)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(54)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(55)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(56)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(57)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(58)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(59)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(60)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(61)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(62)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(63)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(64)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(65)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(66)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(67)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(68)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(69)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(70)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(71)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(72)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(73)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(74)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(75)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(76)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(77)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(78)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(79)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(80)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(81)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(82)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(83)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(84)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(85)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(86)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(87)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(88)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(89)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(90)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(91)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(92)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(93)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(94)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(95)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(96)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(97)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(98)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(99)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(100)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(101)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(102)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(103)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(104)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(105)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(106)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(107)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(108)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(109)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(110)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(111)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(112)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(113)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(114)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(115)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(116)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(117)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(118)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(119)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(120)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(121)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(122)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(123)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(124)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(125)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(126)[31:0]
+TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(127)[31:0]
+@1401200
+-memory
+@22
+TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.RegFilePlugin_regFile(14)[31:0]
+TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.RegFilePlugin_regFile(15)[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
+!100000@@
+?"0200
+@23
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.araddr[31:0]
+!!

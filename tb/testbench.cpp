@@ -38,10 +38,10 @@ template<class module> class testbench {
 
     virtual void reset(int rst_cyc) {
       for (int i=0;i<rst_cyc;i++) {
-        core->arst = 1;
+        core->arst_n = 0;
         this->tick();
       }
-      core->arst = 0;
+      core->arst_n = 1;
       this->tick();
     }
 
@@ -82,7 +82,7 @@ template<class module> class testbench {
     }
 };
 
-bool loadELF(Vmpsoc_simple_tile *cpu, const char *program_path, const bool en_print){
+bool loadELF(Vmpsoc_tile_master *cpu, const char *program_path, const bool en_print){
   ELFIO::elfio program;
 
   program.load(program_path);
@@ -195,16 +195,16 @@ int main(int argc, char** argv, char** env){
 
   dut->reset(1); // We wait some time for the initial inside the RAM to clear the memory
 
-  for (int i=0;i<4;i++) {
-    switch(i) {
-	    case 0: loadELF(dut->core->mpsoc->gen_tiles__BRA__0__KET____DOT__u_tile, argv[1], true);
-	    case 1: loadELF(dut->core->mpsoc->gen_tiles__BRA__1__KET____DOT__u_tile, argv[1], true);
-	    case 2: loadELF(dut->core->mpsoc->gen_tiles__BRA__2__KET____DOT__u_tile, argv[1], true);
-      case 3: loadELF(dut->core->mpsoc->gen_tiles__BRA__3__KET____DOT__u_tile, argv[1], true);
-    }
-  }
+  //for (int i=0;i<4;i++) {
+  //  switch(i) {
+	//    case 0: loadELF(dut->core->mpsoc->gen_tiles__BRA__0__KET____DOT__u_tile_slave, argv[1], true);
+	//    case 1: loadELF(dut->core->mpsoc->gen_tiles__BRA__1__KET____DOT__u_tile_slave, argv[1], true);
+	//    case 2: loadELF(dut->core->mpsoc->gen_tiles__BRA__2__KET____DOT__u_tile_slave, argv[1], true);
+  //    case 3: loadELF(dut->core->mpsoc->gen_tiles__BRA__3__KET____DOT__u_tile_slave, argv[1], true);
+  //  }
+  //}
 
-  if (!loadELF(dut->core->mpsoc->gen_tiles__BRA__0__KET____DOT__u_tile, argv[1], true))
+  if (!loadELF(dut->core->mpsoc->u_tile_master, argv[1], true))
     exit(1);
 
   dut->reset(10);

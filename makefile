@@ -14,10 +14,11 @@ SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_structs.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_structs.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_axi_fnc.svh
 SRC_VERILOG +=	rtl/ravenoc/src/include/ravenoc_pkg.sv
-SRC_VERILOG +=	$(shell find rtl/ravenoc/src					-type f -iname *.sv)
-SRC_VERILOG +=	$(shell find rtl/verilog-axi/rtl			-type f -iname *.v)
-SRC_VERILOG	+=	$(shell find rtl/misc									-type f -iname *.sv)
-SRC_VERILOG	+=	$(shell find rtl/misc									-type f -iname *.v)
+SRC_VERILOG +=	$(shell find rtl/ravenoc/src								-type f -iname *.sv)
+SRC_VERILOG +=	$(shell find rtl/verilog-axi/rtl						-type f -iname *.v)
+SRC_VERILOG	+=	$(shell find rtl/misc												-type f -iname *.sv)
+SRC_VERILOG	+=	$(shell find rtl/misc												-type f -iname *.v)
+SRC_VERILOG	+=	$(shell find sw/tile_slave/									-type f -iname *.sv)
 
 INC_VLOG		:=	rtl/ravenoc/src/include
 INCS_VLOG		:=	$(addprefix -I,$(INC_VLOG))

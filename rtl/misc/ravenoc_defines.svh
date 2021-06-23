@@ -22,11 +22,11 @@
   `endif                                         // channel
 
   `ifndef NOC_CFG_SZ_ROWS
-    `define NOC_CFG_SZ_ROWS       2         // NoC size rows
+    `define NOC_CFG_SZ_ROWS       4         // NoC size rows
   `endif
 
   `ifndef NOC_CFG_SZ_COLS
-    `define NOC_CFG_SZ_COLS       2         // NoC size cols
+    `define NOC_CFG_SZ_COLS       4         // NoC size cols
   `endif
 
   `ifndef ROUTING_ALG
