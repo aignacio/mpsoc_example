@@ -18,7 +18,7 @@ SRC_VERILOG +=	$(shell find rtl/ravenoc/src								-type f -iname *.sv)
 SRC_VERILOG +=	$(shell find rtl/verilog-axi/rtl						-type f -iname *.v)
 SRC_VERILOG	+=	$(shell find rtl/misc												-type f -iname *.sv)
 SRC_VERILOG	+=	$(shell find rtl/misc												-type f -iname *.v)
-SRC_VERILOG	+=	$(shell find sw/tile_slave/									-type f -iname *.sv)
+SRC_VERILOG	+=	sw/tile_slave/output/boot_rom.sv
 
 INC_VLOG		:=	rtl/ravenoc/src/include
 INCS_VLOG		:=	$(addprefix -I,$(INC_VLOG))
@@ -93,15 +93,12 @@ wave: $(WAVEFORM_FST)
 	/Applications/gtkwave.app/Contents/Resources/bin/gtkwave $(WAVEFORM_FST) tmpl.gtkw
 
 clean:
-	rm -rf $(OUT_VERILATOR)
+	rm -rf $(OUT_VERILATOR) sw/tile_slave/output
 
 all: $(VERILATOR_EXE)
-	$(VERILATOR_EXE)
-
-verilator: $(VERILATOR_EXE)
 	@echo "\n"
 	@echo "Emulator builded, for usage please follow:"
-	@echo "\033[96m\e[1m./$(VERILATOR_EXE) myprogram.elf\033[0m"
+	@echo "\033[96m\e[1m./$(VERILATOR_EXE) myprogram.elf cycles\033[0m"
 	@echo "\n"
 
 $(VERILATOR_EXE): $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk
@@ -110,7 +107,10 @@ $(VERILATOR_EXE): $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk
 $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk: $(SRC_VERILOG) $(SRC_CPP) $(TB_VERILATOR)
 	verilator $(VERIL_ARGS)
 
-fpga:
+sw/tile_slave/output/boot_rom.sv:
+	+@make -C sw/tile_slave all
+
+fpga: sw/tile_slave/output/boot_rom.sv
 	fusesoc run --target=stl example:mpsoc:1.0.0
 
 program_fpga:

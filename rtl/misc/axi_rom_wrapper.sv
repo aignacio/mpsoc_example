@@ -12,13 +12,13 @@ module axi_rom_wrapper import ravenoc_pkg::*; (
     axi_miso.awready = '0;
     axi_miso.wready  = '0;
     axi_miso.bid     = '0;
-    axi_miso.bresp   = '0;
+    axi_miso.bresp   = aerror_t'('0);
     axi_miso.buser   = '0;
     axi_miso.bvalid  = '0;
     axi_miso.arready = 'd1;
     axi_miso.rid     = '0;
     axi_miso.rdata   = '0;
-    axi_miso.rresp   = '0;
+    axi_miso.rresp   = aerror_t'('0);
     axi_miso.rlast   = '0;
     axi_miso.ruser   = '0;
     axi_miso.rvalid  = '0;

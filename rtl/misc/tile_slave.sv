@@ -46,7 +46,7 @@ module tile_slave import ravenoc_pkg::*; (
 
   axi_interconnect_wrapper #(
     .N_MASTERS (2),
-    .N_SLAVES  (4),
+    .N_SLAVES  (3),
     .M_BASE_ADDR ({32'hA000_0000, 32'h9000_0000, 32'h8000_0000}),
     .M_ADDR_WIDTH({32'd14, 32'd13, 32'd13})
   ) u_axi_intcon (

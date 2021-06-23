@@ -1,6 +1,3 @@
-[submodule "rtl/cv32e40p"]
-	path = rtl/cv32e40p
-	url = https://github.com/openhwgroup/cv32e40x.git
 [submodule "rtl/verilog-axi"]
 	path = rtl/verilog-axi
 	url = https://github.com/alexforencich/verilog-axi.git

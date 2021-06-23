@@ -184,7 +184,7 @@ bool loadELF(Vmpsoc_tile_master *cpu, const char *program_path, const bool en_pr
 int main(int argc, char** argv, char** env){
   Verilated::commandArgs(argc, argv);
   auto *dut = new testbench<Vmpsoc>;
-  int test = atoi(argv[2]);
+  int sim_cycles = atoi(argv[2]);
   //int tile = atoi(argv[3]);
 
   cout << "\n[RISCV SoC] Emulator started";
@@ -209,7 +209,7 @@ int main(int argc, char** argv, char** env){
 
   dut->reset(10);
 
-  while(test--) {
+  while(sim_cycles--) {
 	  dut->tick();
   }
   dut->close();

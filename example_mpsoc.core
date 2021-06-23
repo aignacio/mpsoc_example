@@ -16,6 +16,7 @@ filesets:
       - rtl/misc/axi_interconnect_wrapper.sv
       - rtl/misc/mpsoc.sv
       - rtl/misc/axi_mem_wrapper.sv
+      - sw/tile_slave/output/boot_rom.sv
     file_type: systemVerilogSource
 
   ravenoc:
@@ -89,47 +90,14 @@ filesets:
       - rtl/verilog-axi/rtl/axi_axil_adapter_wr.v
     file_type: verilogSource
 
-  cv32e40p:
-    files:
-      - rtl/cv32e40p/rtl/include/cv32e40p_pkg.sv: {is_include_file: true}
-      - rtl/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv: {is_include_file: true}
-      - rtl/cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv: {is_include_file: true}
-      - rtl/cv32e40p/bhv/include/cv32e40p_tracer_pkg.sv: {is_include_file: true}
-      - rtl/cv32e40p/rtl/cv32e40p_core.sv
-      - rtl/cv32e40p/rtl/cv32e40p_obi_interface.sv
-      - rtl/cv32e40p/rtl/cv32e40p_alu.sv
-      - rtl/cv32e40p/rtl/cv32e40p_decoder.sv
-      - rtl/cv32e40p/rtl/cv32e40p_compressed_decoder.sv
-      - rtl/cv32e40p/rtl/cv32e40p_apu_disp.sv
-      - rtl/cv32e40p/rtl/cv32e40p_if_stage.sv
-      - rtl/cv32e40p/rtl/cv32e40p_aligner.sv
-      - rtl/cv32e40p/rtl/cv32e40p_ex_stage.sv
-      - rtl/cv32e40p/rtl/cv32e40p_controller.sv
-      - rtl/cv32e40p/rtl/cv32e40p_cs_registers.sv
-      - rtl/cv32e40p/rtl/cv32e40p_prefetch_controller.sv
-      - rtl/cv32e40p/rtl/cv32e40p_register_file_ff.sv
-      - rtl/cv32e40p/rtl/cv32e40p_mult.sv
-      - rtl/cv32e40p/rtl/cv32e40p_fifo.sv
-      - rtl/cv32e40p/rtl/cv32e40p_hwloop_regs.sv
-      - rtl/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv
-      - rtl/cv32e40p/rtl/cv32e40p_ff_one.sv
-      - rtl/cv32e40p/rtl/cv32e40p_id_stage.sv
-      - rtl/cv32e40p/rtl/cv32e40p_sleep_unit.sv
-      - rtl/cv32e40p/rtl/cv32e40p_load_store_unit.sv
-      - rtl/cv32e40p/rtl/cv32e40p_alu_div.sv
-      - rtl/cv32e40p/rtl/cv32e40p_register_file_latch.sv
-      - rtl/cv32e40p/rtl/cv32e40p_popcnt.sv
-      - rtl/cv32e40p/rtl/cv32e40p_int_controller.sv
-    file_type: systemVerilogSource
-
   stlv7325:
     files:
       - xilinx/stlv7325.xdc : {file_type  : xdc}
 
 targets:
   default: &default
-    filesets: [ravenoc,cv32e40p,misc,axi_comps]
-    toplevel: simple_tile
+    filesets: [ravenoc,misc,axi_comps]
+    toplevel: mpsoc
 
   lint:
     default_tool : verilator
@@ -139,7 +107,7 @@ targets:
         mode : lint-only
         verilator_options:
           - "-Wall"
-    toplevel : simple_tile
+    toplevel: mpsoc
 
   stl:
     <<: *default
@@ -150,4 +118,4 @@ targets:
     tools:
       vivado:
         part : xc7k325tffg676-2
-    toplevel: top
+    toplevel: mpsoc

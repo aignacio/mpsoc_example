@@ -33,4 +33,9 @@ typedef union noc_pkt_u {
   uint32_t  u32;
 } noc_pkt_u;
 
+typedef struct tile_coord {
+  uint8_t x:2;
+  uint8_t y:2;
+} tile_coord;
+
 #endif
