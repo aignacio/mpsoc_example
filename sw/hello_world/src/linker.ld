@@ -11,7 +11,8 @@ OUTPUT_ARCH(riscv)
 ENTRY(crtStart)
 
 MEMORY {
-  RAM      (rwx): ORIGIN = 0x80000000, LENGTH = 2k
+  ROM (rwx)     : ORIGIN = 0x80000000, LENGTH = 2K
+  RAM (wxa!ri)  : ORIGIN = 0x90000000, LENGTH = 2K
 }
 
 _stack_size = DEFINED(_stack_size) ? _stack_size : 256;
@@ -19,10 +20,10 @@ _heap_size = DEFINED(_heap_size) ? _heap_size : 0;
 
 SECTIONS {
 
-  ._vector ORIGIN(RAM): {
+  ._vector ORIGIN(ROM): {
     *crt.o(.start_jump);
     *crt.o(.text);
-  } > RAM
+  } > ROM
 
   ._user_heap (NOLOAD):
   {
@@ -82,7 +83,7 @@ SECTIONS {
     *(.rdata)
     *(.rodata .rodata.*)
     *(.gnu.linkonce.r.*)
-  } > RAM
+  } > ROM
 
   .noinit (NOLOAD) : {
       . = ALIGN(4);
@@ -93,7 +94,7 @@ SECTIONS {
   .memory : {
     *(.text);
     end = .;
-  } > RAM
+  } > ROM
 
   .ctors          :
   {
@@ -105,6 +106,5 @@ SECTIONS {
     . = ALIGN(4);
     _ctors_end = .;
     PROVIDE ( END_OF_SW_IMAGE = . );
-  } > RAM
-
+  } > ROM
 }

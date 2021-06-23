@@ -78,9 +78,18 @@ OBJS := $(OBJS:..=miaou)
 OBJS := $(addprefix $(OBJDIR)/,$(OBJS))
 
 all: $(OBJDIR)/$(PROJ_NAME).elf $(OBJDIR)/$(PROJ_NAME).hex $(OBJDIR)/$(PROJ_NAME).asm $(OBJDIR)/$(PROJ_NAME).v
+	#$(OBJDIR)/boot_rom.sv
 
 $(OBJDIR)/%.elf: $(OBJS) | $(OBJDIR)
 	$(RISCV_CC) $(CFLAGS) -o $@ $^ $(LDFLAGS) $(LIBSINC) $(LIBS)
+
+$(OBJDIR)/gen.data: $(OBJDIR)/$(PROJ_NAME).bin
+	@echo "Generating hex format from elf to run in digital simulations..."
+	python scripts/freedom-bin2hex.py --bit-width 32 $< $@
+
+$(OBJDIR)/boot_rom.sv:	$(OBJDIR)/gen.data
+	@echo "Generating behavioral ROM in verilog with hex file"
+	python scripts/gen_rom.py --in_hex $< --out_v $@
 
 %.hex: %.elf
 	$(RISCV_OBJCOPY) -O ihex $^ $@

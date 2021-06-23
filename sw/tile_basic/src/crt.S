@@ -62,6 +62,11 @@ crtInit:
   .option pop
   la sp, _stack_start
 
+configMtvec:
+  lui  a0,       %hi(trap_entry)
+  addi a0,  a0,  %lo(trap_entry)
+  csrw mtvec,a0
+
 bss_init:
   la a0, _bss_start
   la a1, _bss_end

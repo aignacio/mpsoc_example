@@ -11,56 +11,46 @@ OUTPUT_ARCH(riscv)
 ENTRY(crtStart)
 
 MEMORY {
-  RAM      (rwx): ORIGIN = 0x80000000, LENGTH = 2k
+  ROM (rx)      : ORIGIN = 0x80000000, LENGTH = 2K
+  RAM (wxa!ri)  : ORIGIN = 0x90000000, LENGTH = 2K
 }
 
 _stack_size = DEFINED(_stack_size) ? _stack_size : 256;
-_heap_size = DEFINED(_heap_size) ? _heap_size : 0;
+_heap_size = DEFINED(_heap_size) ? _heap_size : 100;
 
 SECTIONS {
 
-  ._vector ORIGIN(RAM): {
+  ._vector ORIGIN(ROM): {
     *crt.o(.start_jump);
     *crt.o(.text);
-  } > RAM
+  } > ROM
 
-  ._user_heap (NOLOAD):
-  {
-    . = ALIGN(8);
-    PROVIDE ( end = . );
-    PROVIDE ( _end = . );
-    PROVIDE ( _heap_start = .);
-    . = . + _heap_size;
-    . = ALIGN(8);
-    PROVIDE ( _heap_end = .);
-  } > RAM
+  .memory : {
+    *(.text);
+    end = .;
+  } > ROM
 
-  ._stack (NOLOAD):
-  {
-    . = ALIGN(16);
-    PROVIDE (_stack_end = .);
-    . = . + _stack_size;
-    . = ALIGN(16);
-    PROVIDE (_stack_start = .);
-  } > RAM
-
-  .data :
-  {
+  .rodata : {
     *(.rdata)
     *(.rodata .rodata.*)
     *(.gnu.linkonce.r.*)
-    *(.data .data.*)
-    *(.gnu.linkonce.d.*)
-    . = ALIGN(8);
-    PROVIDE( __global_pointer$ = . + 0x800 );
-    *(.sdata .sdata.*)
-    *(.gnu.linkonce.s.*)
-    . = ALIGN(8);
-    *(.srodata.cst16)
-    *(.srodata.cst8)
-    *(.srodata.cst4)
-    *(.srodata.cst2)
-    *(.srodata .srodata.*)
+  } > ROM
+
+  .ctors : {
+    . = ALIGN(4);
+    _ctors_start = .;
+    KEEP(*(.init_array*))
+    KEEP (*(SORT(.ctors.*)))
+    KEEP (*(.ctors))
+    . = ALIGN(4);
+    _ctors_end = .;
+    PROVIDE ( END_OF_SW_IMAGE = . );
+  } > ROM
+
+  .noinit (NOLOAD) : {
+      . = ALIGN(4);
+      *(.noinit .noinit.*)
+      . = ALIGN(4);
   } > RAM
 
   .bss (NOLOAD) : {
@@ -76,35 +66,36 @@ SECTIONS {
 		_bss_end = .;
   } > RAM
 
-
-  .rodata         :
+  .data :
   {
     *(.rdata)
     *(.rodata .rodata.*)
     *(.gnu.linkonce.r.*)
+    *(.data .data.*)
+    *(.gnu.linkonce.d.*)
+    . = ALIGN(8);
+    PROVIDE( __global_pointer$ = . + 0x400 );
+    *(.sdata .sdata.*)
+    *(.gnu.linkonce.s.*)
+    . = ALIGN(8);
+    *(.srodata.cst16)
+    *(.srodata.cst8)
+    *(.srodata.cst4)
+    *(.srodata.cst2)
+    *(.srodata .srodata.*)
   } > RAM
 
-  .noinit (NOLOAD) : {
-      . = ALIGN(4);
-      *(.noinit .noinit.*)
-      . = ALIGN(4);
-  } > RAM
-
-  .memory : {
-    *(.text);
-    end = .;
-  } > RAM
-
-  .ctors          :
+  ._user_heap (NOLOAD):
   {
-    . = ALIGN(4);
-    _ctors_start = .;
-    KEEP(*(.init_array*))
-    KEEP (*(SORT(.ctors.*)))
-    KEEP (*(.ctors))
-    . = ALIGN(4);
-    _ctors_end = .;
-    PROVIDE ( END_OF_SW_IMAGE = . );
+    . = ALIGN(8);
+    PROVIDE ( end = . );
+    PROVIDE ( _end = . );
+    PROVIDE ( _heap_start = .);
+    . = . + _heap_size;
+    . = ALIGN(8);
+    PROVIDE ( _heap_end = .);
   } > RAM
-
 }
+/* Stack must be aligned 16-byte boundary, as the end of the RAM is algined, we're good*/
+PROVIDE(_stack_start = ORIGIN(RAM) + LENGTH(RAM));
+PROVIDE(_stack_end  = ORIGIN(RAM) + (LENGTH(RAM) - _stack_size));
