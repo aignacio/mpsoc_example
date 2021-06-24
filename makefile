@@ -98,7 +98,7 @@ clean:
 all: $(VERILATOR_EXE)
 	@echo "\n"
 	@echo "Emulator builded, for usage please follow:"
-	@echo "\033[96m\e[1m./$(VERILATOR_EXE) myprogram.elf cycles\033[0m"
+	@echo "$(VERILATOR_EXE) myprogram.elf cycles"
 	@echo "\n"
 
 $(VERILATOR_EXE): $(OUT_VERILATOR)/V$(ROOT_MOD_VERI).mk

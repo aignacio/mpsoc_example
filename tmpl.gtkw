@@ -1,31 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Wed Jun 23 13:55:25 2021
+[*] Wed Jun 23 23:39:03 2021
 [*]
 [dumpfile] "/private/tmp/waves.fst"
-[dumpfile_mtime] "Wed Jun 23 13:51:29 2021"
-[dumpfile_size] 1274991
+[dumpfile_mtime] "Wed Jun 23 23:37:59 2021"
+[dumpfile_size] 4220773
 [savefile] "/Users/aignacio/projects/mpsoc_example/tmpl.gtkw"
-[timestart] 9100
-[size] 2347 726
-[pos] 121 1331
-*-14.307153 158200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 10
+[size] 2347 1684
+[pos] 121 373
+*-17.622545 198160 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.mpsoc.
 [treeopen] TOP.mpsoc.gen_tiles[3].u_tile.u_riscv_core.
+[treeopen] TOP.mpsoc.u_noc.
+[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].
+[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].
+[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.
-[treeopen] TOP.mpsoc.u_tile_master.
 [treeopen] TOP.mpsoc.u_tile_master.u_ram_data_rv.
-[treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.
 [treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.
-[sst_width] 222
+[sst_width] 335
 [signals_width] 374
 [sst_expanded] 1
-[sst_vpaned_height] 346
+[sst_vpaned_height] 898
 @28
 TOP.mpsoc.arst
 TOP.mpsoc.clk
-@29
 +{irq_tile_3,3} TOP.mpsoc.irqs_noc(15).irq_trig
 @800200
 -tile_master
@@ -116,6 +117,25 @@ TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.wvalid
 @1000200
 -d_bus
 -tile_master
+@28
+TOP.mpsoc.irqs_noc(0).irq_trig
+TOP.mpsoc.irqs_noc(1).irq_trig
+TOP.mpsoc.irqs_noc(2).irq_trig
+TOP.mpsoc.irqs_noc(3).irq_trig
+TOP.mpsoc.irqs_noc(4).irq_trig
+TOP.mpsoc.irqs_noc(5).irq_trig
+@29
+TOP.mpsoc.irqs_noc(6).irq_trig
+@28
+TOP.mpsoc.irqs_noc(7).irq_trig
+TOP.mpsoc.irqs_noc(8).irq_trig
+TOP.mpsoc.irqs_noc(9).irq_trig
+TOP.mpsoc.irqs_noc(10).irq_trig
+TOP.mpsoc.irqs_noc(11).irq_trig
+TOP.mpsoc.irqs_noc(12).irq_trig
+TOP.mpsoc.irqs_noc(13).irq_trig
+TOP.mpsoc.irqs_noc(14).irq_trig
+TOP.mpsoc.irqs_noc(15).irq_trig
 @c00200
 -memory
 @22
@@ -289,10 +309,11 @@ TOP.mpsoc.u_tile_master.u_ram_data_rv.u_ram.mem(127)[31:0]
 @22
 TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.RegFilePlugin_regFile(14)[31:0]
 TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.RegFilePlugin_regFile(15)[31:0]
+TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.awaddr[31:0]
+@28
+TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.awvalid
+TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.wvalid
+@22
+TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.axi_mosi_if_i.wdata[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
-!100000@@
-?"0200
-@23
-TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.araddr[31:0]
-!!

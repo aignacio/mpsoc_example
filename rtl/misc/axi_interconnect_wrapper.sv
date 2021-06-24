@@ -131,7 +131,7 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
       from_m_axi_wvalid  [m_idx*1            +: 1]            = masters_axi_mosi[m_idx].wvalid;
       masters_axi_miso[m_idx].wready   = from_m_axi_wready[m_idx*1+:1];
       masters_axi_miso[m_idx].bid      = from_m_axi_bid   [m_idx*ID_WIDTH+:ID_WIDTH];
-      masters_axi_miso[m_idx].bresp    = from_m_axi_bresp [m_idx*2+:2];
+      masters_axi_miso[m_idx].bresp    = aerror_t'(from_m_axi_bresp [m_idx*2+:2]);
       masters_axi_miso[m_idx].buser    = from_m_axi_buser [m_idx*BUSER_WIDTH+:BUSER_WIDTH];
       masters_axi_miso[m_idx].bvalid   = from_m_axi_bvalid[m_idx*1+:1];
       from_m_axi_bready  [m_idx*1            +: 1]            = masters_axi_mosi[m_idx].bready;
@@ -149,7 +149,7 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
       masters_axi_miso[m_idx].arready = from_m_axi_arready[m_idx*1+:1];
       masters_axi_miso[m_idx].rid     = from_m_axi_rid    [m_idx*ID_WIDTH+:ID_WIDTH];
       masters_axi_miso[m_idx].rdata   = from_m_axi_rdata  [m_idx*DATA_WIDTH+:DATA_WIDTH];
-      masters_axi_miso[m_idx].rresp   = from_m_axi_rresp  [m_idx*2+:2];
+      masters_axi_miso[m_idx].rresp   = aerror_t'(from_m_axi_rresp  [m_idx*2+:2]);
       masters_axi_miso[m_idx].rlast   = from_m_axi_rlast  [m_idx*1+:1];
       masters_axi_miso[m_idx].ruser   = from_m_axi_ruser  [m_idx*1+:1];
       masters_axi_miso[m_idx].rvalid  = from_m_axi_rvalid [m_idx*1+:1];
@@ -161,8 +161,8 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
       slaves_axi_mosi[s_idx].awid    = to_s_axi_awid    [s_idx*ID_WIDTH     +: ID_WIDTH];
       slaves_axi_mosi[s_idx].awaddr  = to_s_axi_awaddr  [s_idx*ADDR_WIDTH   +: ADDR_WIDTH];
       slaves_axi_mosi[s_idx].awlen   = to_s_axi_awlen   [s_idx*ALEN_WIDTH   +: ALEN_WIDTH];
-      slaves_axi_mosi[s_idx].awsize  = to_s_axi_awsize  [s_idx*3            +: 3];
-      slaves_axi_mosi[s_idx].awburst = to_s_axi_awburst [s_idx*2            +: 2];
+      slaves_axi_mosi[s_idx].awsize  = asize_t'(to_s_axi_awsize  [s_idx*3            +: 3]);
+      slaves_axi_mosi[s_idx].awburst = aburst_t'(to_s_axi_awburst [s_idx*2            +: 2]);
       slaves_axi_mosi[s_idx].awlock  = to_s_axi_awlock  [s_idx*1            +: 1];
       slaves_axi_mosi[s_idx].awcache = to_s_axi_awcache [s_idx*4            +: 4];
       slaves_axi_mosi[s_idx].awprot  = to_s_axi_awprot  [s_idx*3            +: 3];
@@ -184,8 +184,8 @@ module axi_interconnect_wrapper import ravenoc_pkg::*; #(
       slaves_axi_mosi[s_idx].arid     = to_s_axi_arid    [s_idx*ID_WIDTH     +: ID_WIDTH];
       slaves_axi_mosi[s_idx].araddr   = to_s_axi_araddr  [s_idx*ADDR_WIDTH   +: ADDR_WIDTH];
       slaves_axi_mosi[s_idx].arlen    = to_s_axi_arlen   [s_idx*ALEN_WIDTH   +: ALEN_WIDTH];
-      slaves_axi_mosi[s_idx].arsize   = to_s_axi_arsize  [s_idx*3            +: 3];
-      slaves_axi_mosi[s_idx].arburst  = to_s_axi_arburst [s_idx*2            +: 2];
+      slaves_axi_mosi[s_idx].arsize   = asize_t'(to_s_axi_arsize  [s_idx*3            +: 3]);
+      slaves_axi_mosi[s_idx].arburst  = aburst_t'(to_s_axi_arburst [s_idx*2            +: 2]);
       slaves_axi_mosi[s_idx].arlock   = to_s_axi_arlock  [s_idx*1            +: 1];
       slaves_axi_mosi[s_idx].arcache  = to_s_axi_arcache [s_idx*4            +: 4];
       slaves_axi_mosi[s_idx].arprot   = to_s_axi_arprot  [s_idx*3            +: 3];

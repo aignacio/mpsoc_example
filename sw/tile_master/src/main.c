@@ -17,26 +17,40 @@ noc_pkt_u pkt;
 
 int main(void) {
 
-  pkt.st.x_dest = 3;
-  pkt.st.y_dest = 3;
   pkt.st.pkt_width = 0;
   pkt.st.message = 22;
 
   setup_irqs();
 
   while(1) {
-    *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-
+    for (int x=0;x<4;x++){
+      for (int y=0;y<4;y++){
+        if ((x == 0) && (y == 0)) {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+        }
+        else {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+          *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
+        }
+      }
+    }
     while(true);
   };
 }
 
 void irq_callback() {
   noc_pkt_u temp;
+  uint32_t buffer = *RaveNoC_rd_buffer;
+  uint8_t x_src, y_src;
 
-  temp.st.message = *RaveNoC_rd_buffer & 0xFFFF;
-  temp.st.x_dest = 3;
-  temp.st.y_dest = 3;
+  x_src = (buffer >> 18) & 3;
+  y_src = (buffer >> 16) & 3;
+
+  temp.st.message = buffer & 0xFFFF;
+  temp.st.x_dest = x_src;
+  temp.st.y_dest = y_src;
   temp.st.pkt_width = 0;
-  *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);
+  //*RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);
 }

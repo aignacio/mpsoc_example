@@ -6,7 +6,7 @@ module axi_mem_wrapper import ravenoc_pkg::*; #(
   input   s_axi_mosi_t  axi_mosi,
   output  s_axi_miso_t  axi_miso
 );
-  localparam ADDR_RAM = $clog2((MEM_KB*1024)/4);
+  localparam ADDR_RAM = $clog2(MEM_KB*1024);
 
   axi_ram #(
     // Width of data bus in bits
