@@ -81,7 +81,7 @@ $(TEMP)/%.o:
 
 debug:
 	@echo "Use disass /m name_of_the_function to search for a function in assembly/c\n"
-	$(GDB) $(TARGET).elf
+	$(GDB) $(TARGET).elf -ex "target remote localhost:3333" -ex "load"
 
 clean:
 	@echo "Cleaning all..."

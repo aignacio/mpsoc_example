@@ -31,7 +31,7 @@ void irq_callback() {
   uint32_t temp_rd = *RaveNoC_rd_buffer;
   noc_pkt reply_pkt;
 
-  temp_rd &= 0xFFFFF; // We remove header flit info
+  temp_rd &= 0xFFF; // We remove header flit info
 
   // Let's implement custom simple protocol
   reply_pkt.x_dest    = 0;

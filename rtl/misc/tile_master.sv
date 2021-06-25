@@ -65,6 +65,7 @@ module tile_master import ravenoc_pkg::*; (
     .*
   );
 
+  // synthesis translate_off
   function automatic void writeWordIRAM(addr_val, word_val);
     /* verilator public */
     logic [31:0] addr_val;
@@ -84,4 +85,5 @@ module tile_master import ravenoc_pkg::*; (
     logic [31:0] boot_addr;
     boot_ff = boot_addr;
   endfunction
+  // synthesis translate_on
 endmodule

@@ -14,6 +14,7 @@ void setup_irqs(){
 }
 
 noc_pkt_u pkt;
+uint32_t data = 11;
 
 int main(void) {
 
@@ -23,19 +24,23 @@ int main(void) {
   setup_irqs();
 
   while(1) {
-    for (int x=0;x<4;x++){
-      for (int y=0;y<4;y++){
-        if ((x == 0) && (y == 0)) {
-          pkt.st.x_dest = x;
-          pkt.st.y_dest = y;
-        }
-        else {
-          pkt.st.x_dest = x;
-          pkt.st.y_dest = y;
-          *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-        }
-      }
-    }
+    /*for (int x=0;x<8;x++){*/
+      /*for (int y=0;y<8;y++){*/
+        /*if ((x == 0) && (y == 0)) {*/
+          /*pkt.st.x_dest = x;*/
+          /*pkt.st.y_dest = y;*/
+        /*}*/
+        /*else {*/
+          /*pkt.st.x_dest = x;*/
+          /*pkt.st.y_dest = y;*/
+          /**RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);*/
+        /*}*/
+      /*}*/
+    /*}*/
+    pkt.st.x_dest = 7;
+    pkt.st.y_dest = 7;
+    pkt.st.message = 41;
+    *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
     while(true);
   };
 }
@@ -45,12 +50,13 @@ void irq_callback() {
   uint32_t buffer = *RaveNoC_rd_buffer;
   uint8_t x_src, y_src;
 
-  x_src = (buffer >> 18) & 3;
-  y_src = (buffer >> 16) & 3;
+  x_src = (buffer >> 15) & 3;
+  y_src = (buffer >> 12) & 3;
 
-  temp.st.message = buffer & 0xFFFF;
-  temp.st.x_dest = x_src;
-  temp.st.y_dest = y_src;
+  temp.st.message = buffer & 0xFFF;
+  data = temp.st.message;
+  temp.st.x_dest = 7;
+  temp.st.y_dest = 7;
   temp.st.pkt_width = 0;
-  //*RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);
+  *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);
 }

@@ -26,7 +26,7 @@ module tile_slave import ravenoc_pkg::*; (
   );
 
   axi_mem_wrapper #(
-    .MEM_KB(2)
+    .MEM_KB(1)
   ) u_ram_rv (
     .clk      (clk_core),
     .arst     (arst_core),
@@ -48,13 +48,13 @@ module tile_slave import ravenoc_pkg::*; (
     .N_MASTERS (2),
     .N_SLAVES  (3),
     .M_BASE_ADDR ({32'hA000_0000, 32'h9000_0000, 32'h8000_0000}),
-    .M_ADDR_WIDTH({32'd14, 32'd13, 32'd13})
+    .M_ADDR_WIDTH({32'd14, 32'd12, 32'd12})
   ) u_axi_intcon (
     .clk  (clk_core),
     .arst (arst_core),
     .*
   );
-
+  // synthesis translate_off
   function automatic void writeWordIRAM(addr_val, word_val);
     /* verilator public */
     logic [31:0] addr_val;
@@ -74,4 +74,5 @@ module tile_slave import ravenoc_pkg::*; (
     logic [31:0] boot_addr;
     boot_ff = boot_addr;
   endfunction
+  // synthesis translate_on
 endmodule

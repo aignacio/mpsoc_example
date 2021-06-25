@@ -62,7 +62,7 @@ module vexriscv_wrapper import ravenoc_pkg::*; (
     //.dBusAxi_aw_payload_id     (dbus_axi_mosi.awid),
     //.dBusAxi_aw_payload_region (dbus_axi_mosi.awregion),
     //.dBusAxi_aw_payload_len    (dbus_axi_mosi.awlen),
-    .dBusAxi_aw_payload_size   (dbus_axi_mosi.awsize),
+    //.dBusAxi_aw_payload_size   (dbus_axi_mosi.awsize), ---
     //.dBusAxi_aw_payload_burst  (dbus_axi_mosi.awburst),
     //.dBusAxi_aw_payload_lock   (dbus_axi_mosi.awlock),
     .dBusAxi_aw_payload_cache  (dbus_axi_mosi.awcache),

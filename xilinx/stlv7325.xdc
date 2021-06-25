@@ -34,4 +34,4 @@ set_property -dict {PACKAGE_PIN L20  IOSTANDARD LVCMOS33} [get_ports {jtag_tck}]
 set_property -dict {PACKAGE_PIN E20  IOSTANDARD LVCMOS33} [get_ports {jtag_tms}]
 #set_property -dict {PACKAGE_PIN H18  IOSTANDARD LVCMOS33} [get_ports {uart_tx_mirror}]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets jtag_tck_IBUF]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets jtag_tck]
