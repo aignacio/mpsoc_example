@@ -106,8 +106,8 @@ void __attribute__((weak)) isr_m_timer(void)
 
 void __attribute__((weak)) isr_m_external(void)
 {
-  write_csr(mip, (0 << IRQ_M_EXT));
   irq_callback();
+  write_csr(mip, (0 << IRQ_M_EXT));
   return;
   while(1);
 }

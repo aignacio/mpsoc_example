@@ -123,4 +123,4 @@ ctags:
 	ctags --extras=+q --fields=+i -n -R --exclude=.git --exclude=build --exclude=output_verilator
 
 dbg_master:
-	sw/openocd_vexriscv -f sw/esp-prog.cfg -c "set MPSOC /home/aignacio/shared/aignacio/projects/mpsoc_example/sw/cpu0.yaml"  -f sw/mpsoc.cfg
+	vexrv_openocd -f sw/esp-prog.cfg -c "set MPSOC /Users/aignacio/projects/mpsoc_example/sw/cpu0.yaml"  -f sw/mpsoc.cfg

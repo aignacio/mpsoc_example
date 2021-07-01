@@ -79,7 +79,7 @@ $(TEMP)/%.o:
 	@echo "Building $@"
 	$(CC) $(CFLAGS) -save-temps=obj -I$(INC) -c $< -o $@
 
-debug:
+dbg:
 	@echo "Use disass /m name_of_the_function to search for a function in assembly/c\n"
 	$(GDB) $(TARGET).elf -ex "target remote localhost:3333" -ex "load"
 

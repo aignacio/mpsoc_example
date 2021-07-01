@@ -14,7 +14,16 @@ void setup_irqs(){
 }
 
 noc_pkt_u pkt;
-uint32_t data = 11;
+
+uint32_t data[63];
+uint8_t indexT = 0;
+
+void clean_prev_noc(){
+  uint32_t pkt;
+  while (*RaveNoC_buf_st != 0){
+    pkt = *RaveNoC_rd_buffer;
+  }
+}
 
 int main(void) {
 
@@ -22,41 +31,43 @@ int main(void) {
   pkt.st.message = 22;
 
   setup_irqs();
+  clean_prev_noc();
 
   while(1) {
-    /*for (int x=0;x<8;x++){*/
-      /*for (int y=0;y<8;y++){*/
-        /*if ((x == 0) && (y == 0)) {*/
-          /*pkt.st.x_dest = x;*/
-          /*pkt.st.y_dest = y;*/
-        /*}*/
-        /*else {*/
-          /*pkt.st.x_dest = x;*/
-          /*pkt.st.y_dest = y;*/
-          /**RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);*/
-        /*}*/
-      /*}*/
-    /*}*/
-    pkt.st.x_dest = 7;
-    pkt.st.y_dest = 7;
-    pkt.st.message = 41;
-    *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-    while(true);
+    //for (int x=0;x<8;x++){
+    //  for (int y=0;y<8;y++){
+    //    if ((x == 0) && (y == 0)) {
+    //      pkt.st.x_dest = x;
+    //      pkt.st.y_dest = y;
+    //    }
+    //    else {
+    //      pkt.st.x_dest = x;
+    //      pkt.st.y_dest = y;
+    //      *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
+    //    }
+    //  }
+    //}
+
+    //if (indexT == 63)
+    //  while(true);
+
   };
 }
 
 void irq_callback() {
-  noc_pkt_u temp;
   uint32_t buffer = *RaveNoC_rd_buffer;
-  uint8_t x_src, y_src;
 
-  x_src = (buffer >> 15) & 3;
-  y_src = (buffer >> 12) & 3;
+  //x_src = (buffer >> 15) & 3;
+  //y_src = (buffer >> 12) & 3;
 
-  temp.st.message = buffer & 0xFFF;
-  data = temp.st.message;
-  temp.st.x_dest = 7;
-  temp.st.y_dest = 7;
-  temp.st.pkt_width = 0;
-  *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);
+  data[indexT] = buffer;
+  //indexT = indexT + 1;
+
+  /*temp.st.message = buffer & 0xFFF;*/
+  /*data = temp.st.message;*/
+  /*temp.st.x_dest = x_src;*/
+  /*temp.st.y_dest = y_src;*/
+  /*temp.st.pkt_width = 0;*/
+
+  /**RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);*/
 }

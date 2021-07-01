@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Wed Jun 23 23:39:03 2021
+[*] Fri Jun 25 22:17:22 2021
 [*]
 [dumpfile] "/private/tmp/waves.fst"
-[dumpfile_mtime] "Wed Jun 23 23:37:59 2021"
-[dumpfile_size] 4220773
+[dumpfile_mtime] "Fri Jun 25 22:08:54 2021"
+[dumpfile_size] 1906094
 [savefile] "/Users/aignacio/projects/mpsoc_example/tmpl.gtkw"
 [timestart] 10
-[size] 2347 1684
-[pos] 121 373
-*-17.622545 198160 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 2976 1124
+[pos] 313 958
+*-16.636673 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.mpsoc.
 [treeopen] TOP.mpsoc.gen_tiles[3].u_tile.u_riscv_core.
@@ -18,12 +18,14 @@
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.
+[treeopen] TOP.mpsoc.u_tile_master.
 [treeopen] TOP.mpsoc.u_tile_master.u_ram_data_rv.
+[treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.
 [treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.
 [sst_width] 335
 [signals_width] 374
 [sst_expanded] 1
-[sst_vpaned_height] 898
+[sst_vpaned_height] 575
 @28
 TOP.mpsoc.arst
 TOP.mpsoc.clk
@@ -49,63 +51,25 @@ TOP.mpsoc.u_tile_master.u_riscv_core.ibus_axi_miso.rvalid
 @c00024
 [color] 2
 #{x_source} (12)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (13)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@28
-(12)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(13)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
 @1401200
 -group_end
-@c00024
+@800024
 [color] 2
 #{y_source} (14)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (15)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@28
-(14)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(15)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@1401200
+@1001200
 -group_end
-@c00024
+@800024
 [color] 2
 #{message} (16)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (17)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (18)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (19)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (20)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (21)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (22)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (23)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (24)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (25)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (26)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (27)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (28)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (29)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (30)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0] (31)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@28
-(16)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(17)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(18)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(19)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(20)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(21)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(22)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(23)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(24)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(25)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(26)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(27)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(28)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(29)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(30)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(31)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@1401200
+@1001200
 -group_end
 @22
 TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.araddr[31:0]
+@23
+TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
 @28
 TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.arvalid
 TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rvalid
-@c00022
-TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@28
-(0)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(1)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(2)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(3)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(4)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(5)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(6)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(7)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(8)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(9)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(10)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-(11)TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_miso.rdata[31:0]
-@1401200
--group_end
 @22
 TOP.mpsoc.u_tile_master.u_riscv_core.dbus_axi_mosi.awaddr[31:0]
 @28
@@ -124,9 +88,7 @@ TOP.mpsoc.irqs_noc(2).irq_trig
 TOP.mpsoc.irqs_noc(3).irq_trig
 TOP.mpsoc.irqs_noc(4).irq_trig
 TOP.mpsoc.irqs_noc(5).irq_trig
-@29
 TOP.mpsoc.irqs_noc(6).irq_trig
-@28
 TOP.mpsoc.irqs_noc(7).irq_trig
 TOP.mpsoc.irqs_noc(8).irq_trig
 TOP.mpsoc.irqs_noc(9).irq_trig
