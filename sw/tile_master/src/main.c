@@ -34,22 +34,21 @@ int main(void) {
   clean_prev_noc();
 
   while(1) {
-    //for (int x=0;x<8;x++){
-    //  for (int y=0;y<8;y++){
-    //    if ((x == 0) && (y == 0)) {
-    //      pkt.st.x_dest = x;
-    //      pkt.st.y_dest = y;
-    //    }
-    //    else {
-    //      pkt.st.x_dest = x;
-    //      pkt.st.y_dest = y;
-    //      *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-    //    }
-    //  }
-    //}
+    for (int x=0;x<8;x++){
+      for (int y=0;y<8;y++){
+        if ((x == 0) && (y == 0)) {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+        }
+        else {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+          *RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
+        }
+      }
+    }
 
-    //if (indexT == 63)
-    //  while(true);
+    while(true);
 
   };
 }

@@ -60,7 +60,8 @@ VERIL_FLAGS		:=	-O3 										\
 									--trace-fst							\
 									--trace-max-array	10000	\
 									--trace-max-width 10000	\
-									--cc
+									--cc										\
+									config.vlt
 									#--debug
 CPPFLAGS_VERI	:=	"$(INCS_CPP) -O3 -g3 -Wall 						\
 									-Werror																\
@@ -70,10 +71,21 @@ CPPFLAGS_VERI	:=	"$(INCS_CPP) -O3 -g3 -Wall 						\
 									-DEN_FST=\"$(EN_FST)\"								\
 									-Wunknown-warning-option"
 # WARN: rtls order matters in verilator compilation seq.
+# VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
+# 									--top-module $(ROOT_MOD_VERI) \
+# 									--Mdir $(OUT_VERILATOR)				\
+# 									$(VERIL_FLAGS)								\
+# 									$(INCS_CPP)										\
+# 									$(INCS_VLOG)									\
+# 									$(SRC_VERILOG) 								\
+# 									$(SRC_CPP) 										\
+# 									-o 														\
+# 									$(ROOT_MOD_VERI)
+
 VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
 									--top-module $(ROOT_MOD_VERI) \
 									--Mdir $(OUT_VERILATOR)				\
-									$(VERIL_FLAGS)								\
+									-f verilator.flags			  		\
 									$(INCS_CPP)										\
 									$(INCS_VLOG)									\
 									$(SRC_VERILOG) 								\
