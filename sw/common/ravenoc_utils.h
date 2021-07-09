@@ -29,7 +29,7 @@ typedef struct noc_pkt {
   unsigned int x_dest    : 3;
   unsigned int y_dest    : 4;
   unsigned int pkt_width : 8;
-  unsigned int message   : 10;
+  unsigned int message   : 17;
 } noc_pkt;
 
 typedef union noc_pkt_u {
