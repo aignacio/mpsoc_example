@@ -1,35 +1,42 @@
 [*]
 [*] GTKWave Analyzer v3.3.107 (w)1999-2020 BSI
-[*] Wed Jul  7 21:32:26 2021
+[*] Sun Jul 11 22:08:08 2021
 [*]
 [dumpfile] "/private/tmp/waves.fst"
-[dumpfile_mtime] "Wed Jul  7 21:03:46 2021"
-[dumpfile_size] 53804012
+[dumpfile_mtime] "Sun Jul 11 21:52:15 2021"
+[dumpfile_size] 5322345
 [savefile] "/Users/aignacio/projects/mpsoc_example/tmpl.gtkw"
-[timestart] 39820
+[timestart] 10
 [size] 2976 1124
-[pos] 93 958
-*-13.129748 104830 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 319 998
+*-10.310669 3045 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.mpsoc.
+[treeopen] TOP.mpsoc.gen_tiles[1].
+[treeopen] TOP.mpsoc.gen_tiles[1].u_tile.
+[treeopen] TOP.mpsoc.gen_tiles[1].u_tile.u_riscv_core.
+[treeopen] TOP.mpsoc.gen_tiles[1].u_tile.u_riscv_core.u_vexrv_core.
 [treeopen] TOP.mpsoc.gen_tiles[3].u_tile.u_riscv_core.
 [treeopen] TOP.mpsoc.gen_tiles[71].
 [treeopen] TOP.mpsoc.gen_tiles[71].u_tile.
+[treeopen] TOP.mpsoc.gen_tiles[8].
+[treeopen] TOP.mpsoc.gen_tiles[8].u_tile.
+[treeopen] TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.
+[treeopen] TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.
 [treeopen] TOP.mpsoc.u_noc.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.gen_rd_vc_buffer[0].
-[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[7].
-[treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[7].gen_noc_y_collumns[8].
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[7].gen_noc_y_collumns[8].u_router_wrapper.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[7].gen_noc_y_collumns[8].u_router_wrapper.u_axi_local.
 [treeopen] TOP.mpsoc.u_noc.gen_noc_x_lines[7].gen_noc_y_collumns[8].u_router_wrapper.u_axi_local.u_axi_csr.
+[treeopen] TOP.mpsoc.u_tile_master.
 [treeopen] TOP.mpsoc.u_tile_master.u_ram_data_rv.
 [treeopen] TOP.mpsoc.u_tile_master.u_riscv_core.
-[sst_width] 335
-[signals_width] 374
+[sst_width] 400
+[signals_width] 494
 [sst_expanded] 1
 [sst_vpaned_height] 575
 @28
@@ -62,7 +69,31 @@ TOP.mpsoc.clk
 -tile_master
 @28
 TOP.mpsoc.gen_tiles[71].u_tile.irqs_noc[1:0]
-@23
+@22
 TOP.mpsoc.u_noc.gen_noc_x_lines[0].gen_noc_y_collumns[0].u_router_wrapper.u_axi_local.gen_rd_vc_buffer[0].u_vc_buffer.fifo_ff[31:0]
+@28
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.iBusAxi_ar_valid
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.iBusAxi_r_valid
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.iBusAxi_r_ready
+@22
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.iBus_cmd_payload_pc[31:0]
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.iBusAxi_r_payload_data[31:0]
+@28
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_exception
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_allowException
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_hadException
+@22
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_mcause_exceptionCode[3:0]
+@28
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.IBusSimplePlugin_rspJoin_exceptionDetected
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_allowEbreakException
+@22
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_mtvec_base[29:0]
+@28
+TOP.mpsoc.gen_tiles[8].u_tile.u_riscv_core.u_vexrv_core.CsrPlugin_mtvec_mode[1:0]
+@22
+TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.CsrPlugin_mtvec_base[29:0]
+@29
+TOP.mpsoc.u_tile_master.u_riscv_core.u_vexrv_core.CsrPlugin_mtvec_mode[1:0]
 [pattern_trace] 1
 [pattern_trace] 0

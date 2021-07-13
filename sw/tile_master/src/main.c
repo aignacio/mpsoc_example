@@ -26,10 +26,10 @@ void clean_prev_noc(){
 }
 
 int main(void) {
-  pkt.st.x_dest = 7;
-  pkt.st.y_dest = 8;
+  pkt.st.x_dest = 9;
+  pkt.st.y_dest = 9;
   pkt.st.pkt_width = 0;
-  pkt.st.message = 681;
+  pkt.st.message = 0;
 
   setup_irqs();
   clean_prev_noc();

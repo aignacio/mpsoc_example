@@ -7,9 +7,9 @@ filesets:
     files:
       - rtl/misc/ravenoc_defines.svh: {is_include_file: true}
       - rtl/misc/core/VexRiscvAxi4wJtag.v
-      - rtl/misc/core/VexRiscvAxi4.v
+      - rtl/misc/core/VexRiscvAXI4Smallest.v
       - rtl/misc/tile_slave.sv
-      - rtl/misc/core/vexriscv_wrapper.sv
+      - rtl/misc/core/vexriscv_smallest_wrapper.sv
       - rtl/misc/core/vexriscv_w_jtag_wrapper.sv
       - rtl/misc/tile_master.sv
       - rtl/misc/axi_rom_wrapper.sv

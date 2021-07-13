@@ -10,7 +10,7 @@
   `endif
 
   `ifndef FLIT_BUFF
-    `define  FLIT_BUFF            2         // Number of flits buffered in the virtual
+    `define  FLIT_BUFF            1         // Number of flits buffered in the virtual
   `endif                                    //channel fifo, MUST BE POWER OF 2 1..2..4..8
 
   `ifndef N_VIRT_CHN
@@ -22,11 +22,11 @@
   `endif                                         // channel
 
   `ifndef NOC_CFG_SZ_ROWS
-    `define NOC_CFG_SZ_ROWS       8         // NoC size rows
+    `define NOC_CFG_SZ_ROWS       10        // NoC size rows
   `endif
 
   `ifndef NOC_CFG_SZ_COLS
-    `define NOC_CFG_SZ_COLS       9         // NoC size cols
+    `define NOC_CFG_SZ_COLS       10        // NoC size cols
   `endif
 
   `ifndef ROUTING_ALG

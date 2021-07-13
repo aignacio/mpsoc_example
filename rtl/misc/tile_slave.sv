@@ -34,7 +34,7 @@ module tile_slave import ravenoc_pkg::*; (
     .axi_miso (slaves_axi_miso[1])
   );
 
-  vexriscv_wrapper u_riscv_core (
+  vexriscv_smallest_wrapper u_riscv_core (
     .clk              (clk_core),
     .arst             (arst_core),
     .ibus_axi_miso    (masters_axi_miso[0]),
