@@ -1,5 +1,4 @@
 output
 output_temp
 *.o
-*.s
 *.i
