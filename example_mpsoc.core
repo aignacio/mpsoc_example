@@ -94,6 +94,11 @@ filesets:
     files:
       - xilinx/stlv7325.xdc : {file_type  : xdc}
 
+  deca:
+    files:
+      - altera/deca.sdc   : {file_type  : SDC}
+      - altera/pinmap.tcl : {file_type  : tclSource}
+
 targets:
   default: &default
     filesets: [ravenoc,misc,axi_comps]
@@ -119,3 +124,15 @@ targets:
       vivado:
         part : xc7k325tffg676-2
     toplevel: mpsoc
+
+  deca:
+    <<: *default
+    default_tool : quartus
+    description : DECA Development kit by Terasic
+    filesets_append:
+      - deca
+    toplevel: top
+    tools:
+      quartus:
+        family : Max 10
+        device : 10M50DAF484C6GES
