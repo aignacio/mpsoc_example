@@ -5,21 +5,23 @@ OBJCOPY	:=	$(PREFIX)objcopy
 GDB			:=	$(PREFIX)gdb
 SIZE		:=	$(PREFIX)size
 
-CFLAGS	:=	-march=rv32i \
-						-mabi=ilp32 \
-						-Wall \
-						-Wno-unused \
-						-ffreestanding \
-						-O0 -g \
+CFLAGS	:=	-march=rv32imc			\
+						-mabi=ilp32					\
+						-Wall								\
+						-Wno-unused					\
+						-ffreestanding			\
+						-O0 -g							\
+						--specs=nano.specs	\
 						-Wall -Wno-main
-LDFLAGS	:=	-g \
-						-Wl,-gc-sections \
+LDFLAGS	:=	-g									\
+						-Wl,-gc-sections		\
 						-Wl,-Map=output/image.map,--print-memory-usage \
-						-march=rv32i \
-						-mabi=ilp32 \
-						-nostdlib #\
-#						--specs=nano.specs \
-#						--specs=nosys.specs
+						-march=rv32imc			\
+						-mabi=ilp32					\
+						-nostartfiles 			\
+						--specs=nano.specs	\
+						--specs=nosys.specs \
+						-lm -lc -lgcc
 
 TARGET_NAME	:= $(notdir $(shell pwd))
 ODIR				:=	output

@@ -32,7 +32,7 @@ object VexRiscvAxi4Jtag{
             cmdForkPersistence = true,
             prediction = STATIC,
             catchAccessFault = false,
-            compressedGen = false
+            compressedGen = true
           ),
           new DBusSimplePlugin(
             catchAddressMisaligned = false,

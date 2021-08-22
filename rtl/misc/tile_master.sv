@@ -9,12 +9,17 @@ module tile_master import ravenoc_pkg::*; (
   output                jtag_tdo,
   input                 jtag_tck
 );
+
   s_axi_mosi_t  [1:0] masters_axi_mosi;
   s_axi_miso_t  [1:0] masters_axi_miso;
 
+`ifdef SIMULATION
+  s_axi_mosi_t  [3:0] slaves_axi_mosi;
+  s_axi_miso_t  [3:0] slaves_axi_miso;
+`else
   s_axi_mosi_t  [2:0] slaves_axi_mosi;
   s_axi_miso_t  [2:0] slaves_axi_miso;
-
+`endif
   logic boot_ff;
 
   always_comb begin
@@ -54,6 +59,25 @@ module tile_master import ravenoc_pkg::*; (
     .jtag_tck         (jtag_tck)
   );
 
+`ifdef SIMULATION
+  axi_interconnect_wrapper #(
+    .N_MASTERS (2),
+    .N_SLAVES  (4),
+    .M_BASE_ADDR ({32'hB000_0000, 32'hA000_0000, 32'h9000_0000, 32'h8000_0000}),
+    .M_ADDR_WIDTH({32'd13, 32'd14, 32'd13, 32'd13})
+  ) u_axi_intcon (
+    .clk  (clk_core),
+    .arst (arst_core),
+    .*
+  );
+
+  axi_printf_verilator u_axi_verilator (
+    .clk      (clk_core),
+    .arst     (arst_core),
+    .axi_mosi (slaves_axi_mosi[3]),
+    .axi_miso (slaves_axi_miso[3])
+  );
+`else
   axi_interconnect_wrapper #(
     .N_MASTERS (2),
     .N_SLAVES  (3),
@@ -64,6 +88,7 @@ module tile_master import ravenoc_pkg::*; (
     .arst (arst_core),
     .*
   );
+`endif
 
   // synthesis translate_off
   function automatic void writeWordIRAM(addr_val, word_val);

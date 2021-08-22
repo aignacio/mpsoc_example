@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "RISC-V launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "targetArchitecture":"arm",
+            "program": "${workspaceFolder}/sw/tile_master/output/tile_master.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/sw/tile_master/output",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerServerAddress": "localhost:3333",
+            "customLaunchSetupCommands": [
+              { "text": "file ${workspaceFolder}/sw/tile_master/output/tile_master.elf", "description": "Loading ELF File" },
+              { "text": "target remote : 3333", "description": "Connecting to the target", "ignoreFailures": true },
+              { "text": "load", "description": "load ELF file to the target", "ignoreFailures": true }
+            ],
+            "launchCompleteCommand": "None",
+            "logging": { "engineLogging": true },
+            "osx": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "riscv64-unknown-elf-gdb"
+            },
+            "linux": {
+              "MIMode": "gdb",
+              "miDebuggerPath": "riscv64-unknown-elf-gdb"
+            }
+        }
+    ]
+}

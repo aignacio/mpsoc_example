@@ -36,6 +36,11 @@ EN_FST				?=	1
 SRC_CPP				:=	$(wildcard $(VERILATOR_TB)/*.cpp)
 INC_CPP				:=	../tb/elfio
 INCS_CPP			:=	$(addprefix -I,$(INC_CPP))
+MACRO_VLOG		:=	IRAM_KB_SIZE=$(IRAM_KB_SIZE)			\
+									DRAM_KB_SIZE=$(DRAM_KB_SIZE)			\
+									JTAG_BOOT=$(JTAG_BOOT)
+MACROS_VLOG		:=	$(addprefix +define+,$(MACRO_VLOG))
+MACROS_VLOG		+=	$(addprefix +define+,SIMULATION)	# Added later cause MACRO_VLOG it's used by																																		   # vivado, so SIMULATION should not be included
 VERIL_FLAGS		:=	-O3 										\
 									-Wno-CASEINCOMPLETE 		\
 									-Wno-WIDTH							\
@@ -88,6 +93,7 @@ VERIL_ARGS		:=	-CFLAGS $(CPPFLAGS_VERI) 			\
 									-f verilator.flags			  		\
 									$(INCS_CPP)										\
 									$(INCS_VLOG)									\
+									$(MACROS_VLOG)							 	\
 									$(SRC_VERILOG) 								\
 									$(SRC_CPP) 										\
 									-o 														\

@@ -31,13 +31,14 @@ void irq_callback() {
   uint32_t temp_rd = *RaveNoC_rd_buffer;
   noc_pkt reply_pkt;
 
-  temp_rd &= 0x3FF; // We remove header flit info
+  //temp_rd &= 0x3FF; // We remove header flit info
 
   // Let's implement custom simple protocol
   reply_pkt.x_dest    = 0;
   reply_pkt.y_dest    = 0;
   reply_pkt.pkt_width = 0;
-  reply_pkt.message   = (uint32_t)_slaveFmtProc(tile_xy,temp_rd);
+  //reply_pkt.message   = (uint32_t)_slaveFmtProc(tile_xy,temp_rd);
+  reply_pkt.message   = (uint32_t)_slaveHeartbeat(tile_xy);
 
   // Send it back to the master
   *RaveNoC_wr_buffer = (uint32_t)_asmPktNoC(reply_pkt);

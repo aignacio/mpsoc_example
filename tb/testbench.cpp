@@ -19,6 +19,7 @@ using namespace std;
 
 template<class module> class testbench {
   VerilatedFstC *trace = new VerilatedFstC;
+  //VerilatedVcdC *trace = new VerilatedVcdC;
   unsigned long tick_counter;
   bool getDataNextCycle;
 
@@ -60,11 +61,11 @@ template<class module> class testbench {
     virtual void tick(void) {
       if (getDataNextCycle) {
         getDataNextCycle = false;
-        //printf("%c",core->mpsoc->getbufferReq());
+        printf("%c",core->mpsoc->u_tile_master->u_axi_verilator->getbufferReq());
       }
 
-      //if (core->mpsoc->printfbufferReq())
-        //getDataNextCycle = true;
+      if (core->mpsoc->u_tile_master->u_axi_verilator->printfbufferReq())
+        getDataNextCycle = true;
 
       core->clk = 0;
       core->eval();
@@ -135,8 +136,8 @@ bool loadELF(Vmpsoc_tile_master *cpu, const char *program_path, const bool en_pr
       //return false;
     }
 
-    if (lma_addr >= 0x80000000 && lma_addr <0x80001FFF){
-      int init_addr = (lma_addr-0x80000000);
+    if (vma_addr >= 0x80000000 && vma_addr <0x80001FFF){
+      int init_addr = (vma_addr-0x80000000);
 
       // IRAM Address
       if (en_print) printf("\nIRAM address space");
