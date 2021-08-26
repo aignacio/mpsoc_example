@@ -16,8 +16,8 @@
 #define RAVENOC_CSR_IRQ_RD_MASK     (RAVENOC_CSR_BASE + 0x14)
 
 // NoC 3x3
-#define NOC_SIZE_X                  4 // clog2(10)
-#define NOC_SIZE_Y                  4 // clog2(10)
+#define NOC_SIZE_X                  2 // clog2(10)
+#define NOC_SIZE_Y                  2 // clog2(10)
 
 #define OFFSET_X                    (32-NOC_SIZE_X)
 #define OFFSET_Y                    (OFFSET_X-NOC_SIZE_Y)

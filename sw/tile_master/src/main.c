@@ -49,8 +49,8 @@ int main(void) {
   //printf("tile_master [configured]");
   while(1) {
 
-    for (int x=0;x<4;x++){
-     for (int y=0;y<4;y++){
+    for (int y=0;y<4;y++){
+     for (int x=0;x<4;x++){
        if ((x == 0) && (y == 0)) {
          pkt.st.x_dest = x;
          pkt.st.y_dest = y;
@@ -66,8 +66,17 @@ int main(void) {
      }
     }
 
+    //pkt.st.x_dest = 2;
+    //pkt.st.y_dest = 3;
+    //payload = (uint32_t) _asmPktNoC(pkt.st);
+
     //*RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-    while(true);
+    while(indexT<15){
+      *RaveNoC_wr_buffer = payload;
+      for (int i=0;i<1000;i++);
+    }
+    while(1);
+    //  clean_prev_noc();
 
   };
 }

@@ -1,7 +1,7 @@
 `verilator_config
 
 // Hierarchical verilation
-//hier_block -module "tile_slave"
 hier_block -module "VexRiscvAxi4"
 hier_block -module "VexRiscvAXI4Smallest"
-//hier_block -module "axi_interconnect_wrapper"
+//hier_block -module "ravenoc"
+

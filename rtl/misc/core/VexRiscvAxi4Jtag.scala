@@ -1,6 +1,5 @@
 package vexriscv.demo
 
-
 import spinal.core._
 import spinal.lib._
 import spinal.lib.bus.avalon.AvalonMM
@@ -9,15 +8,6 @@ import spinal.lib.eda.altera.{InterruptReceiverTag, QSysify, ResetEmitterTag}
 import vexriscv.ip.{DataCacheConfig, InstructionCacheConfig}
 import vexriscv.plugin._
 import vexriscv.{VexRiscv, VexRiscvConfig, plugin}
-
-/**
- * Created by spinalvm on 14.07.17.
- */
-//class VexRiscvAvalon(debugClockDomain : ClockDomain) extends Component{
-//
-//}
-
-//make clean run DBUS=SIMPLE_AHBLITE3 IBUS=SIMPLE_AHBLITE3 MMU=no CSR=no DEBUG_PLUGIN=STD
 
 object VexRiscvAxi4Jtag{
   def main(args: Array[String]) {
@@ -38,43 +28,6 @@ object VexRiscvAxi4Jtag{
             catchAddressMisaligned = false,
             catchAccessFault = false
           ),
-//          new IBusCachedPlugin(
-//            config = InstructionCacheConfig(
-//              cacheSize = 4096,
-//              bytePerLine =32,
-//              wayCount = 1,
-//              addressWidth = 32,
-//              cpuDataWidth = 32,
-//              memDataWidth = 32,
-//              catchIllegalAccess = true,
-//              catchAccessFault = true,
-//              catchMemoryTranslationMiss = true,
-//              asyncTagMemory = false,
-//              twoCycleRam = true
-//            )
-//            //            askMemoryTranslation = true,
-//            //            memoryTranslatorPortConfig = MemoryTranslatorPortConfig(
-//            //              portTlbSize = 4
-//            //            )
-//          ),
-//          new DBusCachedPlugin(
-//            config = new DataCacheConfig(
-//              cacheSize         = 4096,
-//              bytePerLine       = 32,
-//              wayCount          = 1,
-//              addressWidth      = 32,
-//              cpuDataWidth      = 32,
-//              memDataWidth      = 32,
-//              catchAccessError  = true,
-//              catchIllegal      = true,
-//              catchUnaligned    = true,
-//              catchMemoryTranslationMiss = true
-//            ),
-//            memoryTranslatorPortConfig = null
-//            //            memoryTranslatorPortConfig = MemoryTranslatorPortConfig(
-//            //              portTlbSize = 6
-//            //            )
-//          ),
           new StaticMemoryTranslatorPlugin(
             ioRange      = _(31 downto 28) === 0xF
           ),
@@ -148,19 +101,6 @@ object VexRiscvAxi4Jtag{
             plugin.dBus.setAsDirectionLess()
             master(plugin.dBus.toAxi4()).setName("dBusAxi")
           }
-//          case plugin: IBusCachedPlugin => {
-//            plugin.iBus.setAsDirectionLess() //Unset IO properties of iBus
-//            iBus = master(plugin.iBus.toAvalon())
-//              .setName("iBusAvalon")
-//              .addTag(ClockDomainTag(ClockDomain.current)) //Specify a clock domain to the iBus (used by QSysify)
-//          }
-//          case plugin: DBusCachedPlugin => {
-//            plugin.dBus.setAsDirectionLess()
-//            master(plugin.dBus.toAvalon())
-//              .setName("dBusAvalon")
-//              .addTag(ClockDomainTag(ClockDomain.current))
-//          }
-//
           case plugin: DebugPlugin => plugin.debugClockDomain {
             plugin.io.bus.setAsDirectionLess()
             val jtag = slave(new Jtag())
@@ -170,16 +110,6 @@ object VexRiscvAxi4Jtag{
               .addTag(ResetEmitterTag(plugin.debugClockDomain))
               .parent = null //Avoid the io bundle to be interpreted as a QSys conduit
           }
-          //case plugin: DebugPlugin if args.contains("--jtag")=> plugin.debugClockDomain {
-            //plugin.io.bus.setAsDirectionLess()
-            //val jtag = slave(new Jtag()).setName("jtag")
-            //jtag <> plugin.io.bus.fromJtag()
-
-//            // On Artix FPGA jtag :
-//            val jtagCtrl = JtagTapInstructionCtrl()
-//            val tap = jtagCtrl.fromXilinxBscane2(userId = 1)
-//            jtagCtrl <> plugin.io.bus.fromJtagInstructionCtrl(ClockDomain(tap.TCK))
-          //}
           case _ =>
         }
       }

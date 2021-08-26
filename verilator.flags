@@ -26,5 +26,5 @@
 --trace-max-width 10000
 --cc
 --threads 4
-//config.vlt
-//--hierarchical
+config.vlt
+--hierarchical

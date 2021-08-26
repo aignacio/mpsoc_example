@@ -22,7 +22,7 @@
   `endif                                         // channel
 
   `ifndef NOC_CFG_SZ_ROWS
-    `define NOC_CFG_SZ_ROWS       4       // NoC size rows
+    `define NOC_CFG_SZ_ROWS       4        // NoC size rows
   `endif
 
   `ifndef NOC_CFG_SZ_COLS

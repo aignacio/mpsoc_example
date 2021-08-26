@@ -54,25 +54,25 @@ module tile_slave import ravenoc_pkg::*; (
     .arst (arst_core),
     .*
   );
-  // synthesis translate_off
-  function automatic void writeWordIRAM(addr_val, word_val);
-    /* verilator public */
-    logic [31:0] addr_val;
-    logic [31:0] word_val;
-    //u_rom_rv.u_ram.mem[addr_val] = word_val;
-  endfunction
+  //// synthesis translate_off
+  //function automatic void writeWordIRAM(addr_val, word_val);
+  //  /* verilator public */
+  //  logic [31:0] addr_val;
+  //  logic [31:0] word_val;
+  //  //u_rom_rv.u_ram.mem[addr_val] = word_val;
+  //endfunction
 
-  function automatic void writeWordDRAM(addr_val, word_val);
-    /* verilator public */
-    logic [31:0] addr_val;
-    logic [31:0] word_val;
-    u_ram_rv.u_ram.mem[addr_val] = word_val;
-  endfunction
+  //function automatic void writeWordDRAM(addr_val, word_val);
+  //  /* verilator public */
+  //  logic [31:0] addr_val;
+  //  logic [31:0] word_val;
+  //  u_ram_rv.u_ram.mem[addr_val] = word_val;
+  //endfunction
 
-  function automatic void writeRstAddr(boot_addr);
-    /* verilator public */
-    logic [31:0] boot_addr;
-    boot_ff = boot_addr;
-  endfunction
-  // synthesis translate_on
+  //function automatic void writeRstAddr(boot_addr);
+  //  /* verilator public */
+  //  logic [31:0] boot_addr;
+  //  boot_ff = boot_addr;
+  //endfunction
+  //// synthesis translate_on
 endmodule

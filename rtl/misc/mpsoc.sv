@@ -52,4 +52,17 @@ module mpsoc import ravenoc_pkg::*; (
     // Used only in tb to bypass cdc module
     .bypass_cdc ('0)
   );
+
+  // ila_mpsoc u_ila (
+	//   .clk(clk),
+	//   .probe0(irqs_noc[0].irq_trig),
+	//   .probe1(slaves_axi_miso[0].rdata),
+	//   .probe2(slaves_axi_miso[0].rvalid),
+	//   .probe3(slaves_axi_mosi[1].wvalid),
+	//   .probe4(slaves_axi_mosi[1].wdata),
+	//   .probe5(slaves_axi_mosi[1].awaddr),
+	//   .probe6(slaves_axi_mosi[1].awvalid),
+	//   .probe7(slaves_axi_miso[1].rvalid),
+	//   .probe8(slaves_axi_miso[1].rdata)
+  // );
 endmodule

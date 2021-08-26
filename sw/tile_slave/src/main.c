@@ -16,11 +16,11 @@ void setup_irqs(){
 }
 
 int main(void) {
-  uint8_t tile_row = *RaveNoC_Row;
-  uint8_t tile_col = *RaveNoC_Col;
+  //uint8_t tile_row = *RaveNoC_Row;
+  //uint8_t tile_col = *RaveNoC_Col;
 
-  tile_xy.x = tile_row;
-  tile_xy.y = tile_col;
+  //tile_xy.x = tile_row;
+  //tile_xy.y = tile_col;
 
   setup_irqs();
 
@@ -30,15 +30,16 @@ int main(void) {
 void irq_callback() {
   uint32_t temp_rd = *RaveNoC_rd_buffer;
   noc_pkt reply_pkt;
+  tile_coord coord;
 
-  //temp_rd &= 0x3FF; // We remove header flit info
+  coord.x = *RaveNoC_Row;
+  coord.y = *RaveNoC_Col;
 
   // Let's implement custom simple protocol
   reply_pkt.x_dest    = 0;
   reply_pkt.y_dest    = 0;
   reply_pkt.pkt_width = 0;
-  //reply_pkt.message   = (uint32_t)_slaveFmtProc(tile_xy,temp_rd);
-  reply_pkt.message   = (uint32_t)_slaveHeartbeat(tile_xy);
+  reply_pkt.message   = (uint32_t)_slaveHeartbeat(coord);
 
   // Send it back to the master
   *RaveNoC_wr_buffer = (uint32_t)_asmPktNoC(reply_pkt);
