@@ -108,7 +108,7 @@ help:
 	@echo "program_fpga - run fusesoc only to pgm the board"
 
 wave: $(WAVEFORM_FST)
-	/Applications/gtkwave.app/Contents/Resources/bin/gtkwave $(WAVEFORM_FST) tmpl.gtkw
+	/Applications/gtkwave.app/Contents/Resources/bin/gtkwave $(WAVEFORM_FST) /tmp/Untitled.gtkw
 
 clean:
 	rm -rf $(OUT_VERILATOR) sw/tile_slave/output

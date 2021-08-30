@@ -45,17 +45,17 @@ module axi_printf_verilator import ravenoc_pkg::*; (
     end
   end
 
-  function [31:0] getbufferReq;
+  function [7:0] getbufferReq;
     /* verilator public */
     begin
-      getbufferReq = (axi_mosi.wdata);
+      getbufferReq = (axi_mosi.wdata[7:0]);
     end
   endfunction
 
   function printfbufferReq;
     /* verilator public */
     begin
-      printfbufferReq = (axi_mosi.awvalid);
+      printfbufferReq = (axi_mosi.wvalid);
     end
   endfunction
 endmodule

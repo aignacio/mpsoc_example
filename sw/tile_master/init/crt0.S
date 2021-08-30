@@ -10,5 +10,5 @@ _start_reset:
     auipc gp, %pcrel_hi(__global_pointer$)
     addi  gp, gp, %pcrel_lo(1b)
 .option pop
-    la sp, _end_stack
+    la sp, _start_stack
     call _reset

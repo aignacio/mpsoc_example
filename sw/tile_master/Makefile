@@ -5,7 +5,7 @@ OBJCOPY	:=	$(PREFIX)objcopy
 GDB			:=	$(PREFIX)gdb
 SIZE		:=	$(PREFIX)size
 
-CFLAGS	:=	-march=rv32i			\
+CFLAGS	:=	-march=rv32imc			\
 						-mabi=ilp32					\
 						-Wall								\
 						-Wno-unused					\
@@ -16,7 +16,7 @@ CFLAGS	:=	-march=rv32i			\
 LDFLAGS	:=	-g									\
 						-Wl,-gc-sections		\
 						-Wl,-Map=output/image.map,--print-memory-usage \
-						-march=rv32i			\
+						-march=rv32imc			\
 						-mabi=ilp32					\
 						-nostartfiles 			\
 						--specs=nano.specs	\

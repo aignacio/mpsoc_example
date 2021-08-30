@@ -38,64 +38,34 @@ size_t _write(int fildes, const void *buf, size_t nbyte) {
 }
 
 int main(void) {
-  //pkt.st.x_dest = 9;
-  //pkt.st.y_dest = 9;
-  //pkt.st.pkt_width = 0;
-  pkt.st.message = 0xd;
-
   setup_irqs();
   clean_prev_noc();
 
-  //printf("tile_master [configured]");
   while(1) {
-
     for (int y=0;y<4;y++){
-     for (int x=0;x<4;x++){
-       if ((x == 0) && (y == 0)) {
-         pkt.st.x_dest = x;
-         pkt.st.y_dest = y;
-       }
-       else {
-         pkt.st.x_dest = x;
-         pkt.st.y_dest = y;
-         payload = (uint32_t) _asmPktNoC(pkt.st);
-         *RaveNoC_wr_buffer = payload;
-         lock = 1;
-         while(lock);
-       }
-     }
-    }
-
-    //pkt.st.x_dest = 2;
-    //pkt.st.y_dest = 3;
-    //payload = (uint32_t) _asmPktNoC(pkt.st);
-
-    //*RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(pkt.st);
-    while(indexT<15){
-      *RaveNoC_wr_buffer = payload;
-      for (int i=0;i<1000;i++);
+      for (int x=0;x<4;x++){
+        if ((x == 0) && (y == 0)) {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+        }
+        else {
+          pkt.st.x_dest = x;
+          pkt.st.y_dest = y;
+          payload = (uint32_t) _asmPktNoC(pkt.st);
+          *RaveNoC_wr_buffer = payload;
+          lock = 1;
+          /*while(lock);*/
+        }
+      }
     }
     while(1);
-    //  clean_prev_noc();
-
-  };
+  }
 }
 
 void irq_callback() {
   uint32_t buffer = *RaveNoC_rd_buffer;
 
-  //x_src = (buffer >> 15) & 3;
-  //y_src = (buffer >> 12) & 3;
-  //printf("Pacote recebido!");
+  printf("NoC pkt received: 0x%x\n", (unsigned int)buffer);
   data[indexT++] = buffer;
   lock = 0;
-  //indexT = indexT + 1;
-
-  /*temp.st.message = buffer & 0xFFF;*/
-  /*data = temp.st.message;*/
-  /*temp.st.x_dest = x_src;*/
-  /*temp.st.y_dest = y_src;*/
-  /*temp.st.pkt_width = 0;*/
-
-  /**RaveNoC_wr_buffer = (uint32_t) _asmPktNoC(temp.st);*/
 }

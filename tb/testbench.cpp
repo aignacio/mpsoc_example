@@ -59,13 +59,18 @@ template<class module> class testbench {
     }
 
     virtual void tick(void) {
-      if (getDataNextCycle) {
-        getDataNextCycle = false;
-        printf("%c",core->mpsoc->u_tile_master->u_axi_verilator->getbufferReq());
-      }
+      //if (getDataNextCycle) {
+      //  getDataNextCycle = false;
+      //  printf("\n%d",core->mpsoc->u_tile_master->u_axi_verilator->getbufferReq());
+      //  printf("%c",core->mpsoc->u_tile_master->u_axi_verilator->getbufferReq());
+      //}
 
-      if (core->mpsoc->u_tile_master->u_axi_verilator->printfbufferReq())
-        getDataNextCycle = true;
+      if (core->mpsoc->u_tile_master->u_axi_verilator->printfbufferReq()) {
+        //printf("\n Received Char - ");
+        printf("%c",core->mpsoc->u_tile_master->u_axi_verilator->getbufferReq());
+        //printf("\n");
+        //getDataNextCycle = true;
+      }
 
       core->clk = 0;
       core->eval();
@@ -136,8 +141,8 @@ bool loadELF(Vmpsoc_tile_master *cpu, const char *program_path, const bool en_pr
       //return false;
     }
 
-    if (vma_addr >= 0x80000000 && vma_addr <0x80001FFF){
-      int init_addr = (vma_addr-0x80000000);
+    if ((lma_addr >= 0x80000000 && lma_addr <0x80001FFF) && (file_size > 0x00)){
+      int init_addr = (lma_addr-0x80000000);
 
       // IRAM Address
       if (en_print) printf("\nIRAM address space");
